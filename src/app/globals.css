@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-peach: #E8A87C;
+  --color-peach-light: #f0c4a8;
+  --color-peach-dark: #d4926a;
+  --color-navy: #1B2A4A;
+  --color-navy-light: #2a3d66;
+  --color-terracotta: #CC5A47;
+  --color-cream: #FAF8F5;
+  --color-charcoal: #2D2D2D;
+  --color-forest: #2D5C4F;
+  --color-forest-light: #3a7566;
+
+  --font-heading: var(--font-cormorant);
+  --font-body: var(--font-dm-sans);
+  --font-accent: var(--font-montserrat);
+}
+
+/* Smooth scroll with Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Custom cursor */
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-peach);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+}
+
+.cursor-dot.cursor-hover {
+  width: 40px;
+  height: 40px;
+  background-color: var(--color-peach-light);
+}
+
+/* Text reveal animation helper */
+.text-reveal-mask {
+  overflow: hidden;
+  display: inline-block;
+}
+
+.text-reveal-mask > span {
+  display: inline-block;
+}
+
+/* Page transition overlay */
+.page-transition-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background-color: var(--color-peach);
+  transform: translateX(100%);
+}
+
+/* Hero Ken Burns effect */
+@keyframes kenBurns {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+.ken-burns {
+  animation: kenBurns 20s ease-in-out infinite alternate;
+}
+
+/* Marquee */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* Floating label */
+.floating-label input:focus ~ label,
+.floating-label input:not(:placeholder-shown) ~ label,
+.floating-label textarea:focus ~ label,
+.floating-label textarea:not(:placeholder-shown) ~ label {
+  transform: translateY(-1.5rem) scale(0.85);
+  color: var(--color-peach);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-peach);
+  border-radius: 3px;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--color-peach);
+  color: white;
+}

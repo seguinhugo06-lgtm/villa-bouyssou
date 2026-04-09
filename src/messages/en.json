@@ -1,0 +1,140 @@
+{
+  "nav": {
+    "home": "Home",
+    "villa": "The Villa",
+    "overview": "Overview",
+    "location": "Location",
+    "photos": "Photos",
+    "availability": "Availability",
+    "reviews": "Reviews",
+    "prices": "Prices",
+    "travelGuide": "Travel Guide",
+    "contact": "Contact",
+    "book": "Book"
+  },
+  "hero": {
+    "title": "To rent a contemporary villa near the historic city center of Sarlat.",
+    "subtitle": "To rent a contemporary villa in a medieval town in Sarlat-la-Canéda.",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "guests": "Guests",
+    "bookNow": "Book Now"
+  },
+  "presentation": {
+    "title": "Villa Bouyssou · 500m from center · Heated pool",
+    "location": "Sarlat-la-Canéda, France",
+    "features": {
+      "sleeps7to9": "Sleeps 7 to 9",
+      "heatedPool": "Heated Pool",
+      "floorAC": "Floor Air Conditioning",
+      "fiberWifi": "Fiber Wi-Fi",
+      "parking": "Parking",
+      "woodFireplace": "Wood Fireplace",
+      "pingPongTable": "Ping Pong Table"
+    },
+    "discoverMore": "Discover More"
+  },
+  "amenities": {
+    "cityCenter": "500M FROM CITY CENTER",
+    "relaxingSpace": "RELAXING SPACE",
+    "heatedPool": "HEATED POOL",
+    "surroundingForest": "SURROUNDING FOREST",
+    "floorAC": "FLOOR AIR CONDITIONING",
+    "gamesActivities": "GAMES & ACTIVITIES",
+    "masterSuite": "MASTER SUITE",
+    "woodFireplace": "WOOD FIREPLACE",
+    "highSpeedInternet": "HIGH SPEED INTERNET",
+    "laundry": "LAUNDRY"
+  },
+  "exterior": {
+    "poolDescription": "Enjoy a heated pool and approximately 2,386 m² of land, surrounded by lush greenery.",
+    "poolFullText": "The villa's amenities include a heated pool and a large garden providing an idyllic setting for outdoor relaxation. The house and the heated pool (heat pump from May to October) face south, allowing you to fully enjoy the sun throughout the day. The pool measures 11x4m. The terrace is equipped with a gas barbecue, a large table, and a set of garden furniture, perfect for relaxing by the water and sharing group meals. For recreation, there is a ping pong table and pool accessories, as well as board games for all ages. For cooler nights, an outdoor heater is at your disposal.",
+    "architectureDescription": "A contemporary architecture with spacious living areas, blending modernity and conviviality.",
+    "architectureFullText": "Villa Bouyssou is a unique creation, custom-designed by a renowned architect from Sarlat, Gérard Bouyssou. This residence features clean lines, minimalist design, and large multiple volumes aimed at optimizing pleasant living spaces for group gatherings. Facing south, its large windows allow natural light to pour in. With spacious and functional areas, you'll have direct access to the pool and garden from the living room through its large windows. Ideal for keeping an eye on the children at all times."
+  },
+  "interior": {
+    "title": "Discover the many amenities offered by the villa.",
+    "items": [
+      "Fully equipped kitchen",
+      "Dishwasher",
+      "Washing machine & dryer",
+      "Floor air conditioning",
+      "Wood fireplace",
+      "Fiber Wi-Fi",
+      "Smart TV",
+      "Board games & outdoor activities",
+      "Baby equipment available",
+      "Private parking"
+    ]
+  },
+  "bedrooms": {
+    "title": "Three Bedrooms with Private Bathroom",
+    "general": "Each bedroom has its own private bathroom, ensuring comfort and privacy for all guests.",
+    "rooms": {
+      "bleuNuit": {
+        "name": "Bleu Nuit",
+        "capacity": "2 to 3 guests",
+        "bedSize": "King-size bed + single bed",
+        "features": "Private bathroom with walk-in shower"
+      },
+      "terracotta": {
+        "name": "Terracotta",
+        "capacity": "2 to 3 guests",
+        "bedSize": "King-size bed + single bed",
+        "features": "Private bathroom with walk-in shower"
+      },
+      "ocre": {
+        "name": "Ocre",
+        "capacity": "2 to 3 guests",
+        "bedSize": "King-size bed + single bed",
+        "features": "Private bathroom with walk-in shower"
+      }
+    }
+  },
+  "locationSection": {
+    "title": "Just a 5-minute walk from the historic city center.",
+    "description": "You are 500 meters away from the city center of Sarlat. You can stroll and do your shopping with ease. This is especially convenient in the summer when Sarlat is very busy and parking can be challenging. You will also find a bakery, a supermarket, a pharmacy, and all other amenities near the house.",
+    "cta": "View on map"
+  },
+  "welcome": {
+    "title": "A Caring Welcome!",
+    "description": "Upon your arrival, Julien will greet you. He will hand over the keys and give you an overview of how the house operates. If you need anything during your stay, he will be available on-site to assist you.",
+    "checkIn": "4:00 PM",
+    "checkOut": "10:00 AM"
+  },
+  "seasonal": {
+    "badge": "Right now",
+    "title": "Celebrate Christmas and New Year in a cozy atmosphere!",
+    "description": "Enjoy warm moments by the fireplace and celebrate the holiday season with your family starting from €395 per night.",
+    "cta": "Book for the holidays"
+  },
+  "events": {
+    "title": "Do you want to host a special event at the Villa?",
+    "description": "For the organization of seminars, weddings, professional projects, or any other special event, feel free to contact me.",
+    "cta": "Contact us"
+  },
+  "marquee": {
+    "text": "Enjoy the unique atmosphere of this villa, designed to offer a memorable and unforgettable stay!"
+  },
+  "platforms": {
+    "title": "Also available on",
+    "airbnbFavorite": "Guest Favorite",
+    "superhostBadge": "Superhost"
+  },
+  "travelGuideTeaser": {
+    "title": "Discover the region, enjoy the best addresses!",
+    "description": "Explore the Périgord Noir and its treasures: gastronomy, historic sites, outdoor activities, and hidden gems hand-picked by your hosts.",
+    "cta": "Explore the travel guide"
+  },
+  "contactQuick": {
+    "title": "Get in Touch",
+    "email": "lavillabouyssou@gmail.com",
+    "phone": "+33 6 87 40 20 93"
+  },
+  "footer": {
+    "rights": "© 2026 La Villa Bouyssou. All rights reserved.",
+    "legalNotice": "Legal Notice",
+    "privacyPolicy": "Privacy Policy",
+    "address": "7 route de la Verperie, Sarlat la Canéda, Dordogne, France 24200"
+  }
+}

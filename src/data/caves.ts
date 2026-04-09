@@ -1,0 +1,156 @@
+export interface Cave {
+  id: string;
+  name: string;
+  distance: number;
+  taglineKey: string;
+  website?: string;
+  imagePlaceholder: string;
+}
+
+export const caves: Cave[] = [
+  {
+    id: "domme",
+    name: "Domme",
+    distance: 13.3,
+    taglineKey: "caves.domme.tagline",
+    website: "sites-domme.com",
+    imagePlaceholder: "Grotte de Domme natural cave beneath the bastide town",
+  },
+  {
+    id: "roc-de-cazelle",
+    name: "Roc de Cazelle",
+    distance: 16,
+    taglineKey: "caves.rocDeCazelle.tagline",
+    website: "rocdecazelle.com",
+    imagePlaceholder: "Roc de Cazelle prehistoric troglodyte site",
+  },
+  {
+    id: "combarelles",
+    name: "Combarelles",
+    distance: 17.7,
+    taglineKey: "caves.combarelles.tagline",
+    imagePlaceholder: "Grotte des Combarelles with engraved prehistoric art",
+  },
+  {
+    id: "font-de-gaume",
+    name: "Font de Gaume",
+    distance: 19.3,
+    taglineKey: "caves.fontDeGaume.tagline",
+    imagePlaceholder: "Grotte de Font de Gaume with polychrome prehistoric paintings",
+  },
+  {
+    id: "lascaux",
+    name: "Lascaux",
+    distance: 22.7,
+    taglineKey: "caves.lascaux.tagline",
+    website: "lascaux.fr",
+    imagePlaceholder: "Lascaux cave replica showcasing prehistoric cave paintings",
+  },
+  {
+    id: "grand-roc",
+    name: "Grand Roc",
+    distance: 22.9,
+    taglineKey: "caves.grandRoc.tagline",
+    website: "grotte-grand-roc.fr",
+    imagePlaceholder: "Grotte du Grand Roc with crystalline formations",
+  },
+  {
+    id: "cougnac",
+    name: "Cougnac",
+    distance: 24.1,
+    taglineKey: "caves.cougnac.tagline",
+    website: "grottesdecougnac.com",
+    imagePlaceholder: "Grottes de Cougnac with stalactites and prehistoric paintings",
+  },
+  {
+    id: "proumeyssac",
+    name: "Proumeyssac",
+    distance: 26.6,
+    taglineKey: "caves.proumeyssac.tagline",
+    imagePlaceholder: "Gouffre de Proumeyssac cathedral-like underground chamber",
+  },
+  {
+    id: "sorcier",
+    name: "Sorcier",
+    distance: 27.8,
+    taglineKey: "caves.sorcier.tagline",
+    imagePlaceholder: "Grotte du Sorcier with prehistoric rock engravings",
+  },
+  {
+    id: "bara-bahau",
+    name: "Bara-Bahau",
+    distance: 31,
+    taglineKey: "caves.baraBahau.tagline",
+    imagePlaceholder: "Grotte de Bara-Bahau with prehistoric finger-traced engravings",
+  },
+  {
+    id: "maxange",
+    name: "Maxange",
+    distance: 32.3,
+    taglineKey: "caves.maxange.tagline",
+    website: "lesgrottesdemaxange.com",
+    imagePlaceholder: "Grottes de Maxange with rare eccentric crystallizations",
+  },
+  {
+    id: "rouffignac",
+    name: "Rouffignac",
+    distance: 37.9,
+    taglineKey: "caves.rouffignac.tagline",
+    website: "grottederouffignac.fr",
+    imagePlaceholder: "Grotte de Rouffignac with mammoth engravings explored by electric train",
+  },
+  {
+    id: "lacave",
+    name: "Lacave",
+    distance: 40.3,
+    taglineKey: "caves.lacave.tagline",
+    imagePlaceholder: "Grottes de Lacave with illuminated underground lakes",
+  },
+  {
+    id: "carbonnieres",
+    name: "Carbonni\u00e8res",
+    distance: 42.5,
+    taglineKey: "caves.carbonnieres.tagline",
+    website: "grottedescarbonnieres.com",
+    imagePlaceholder: "Grotte des Carbonni\u00e8res with spectacular formations",
+  },
+  {
+    id: "merveilles",
+    name: "Merveilles",
+    distance: 49.2,
+    taglineKey: "caves.merveilles.tagline",
+    website: "grottedesmerveilles.com",
+    imagePlaceholder: "Grotte des Merveilles with prehistoric hand paintings",
+  },
+  {
+    id: "tourtoirac",
+    name: "Tourtoirac",
+    distance: 57.1,
+    taglineKey: "caves.tourtoirac.tagline",
+    website: "grotte-de-tourtoirac.fr",
+    imagePlaceholder: "Grotte de Tourtoirac with underground river and formations",
+  },
+  {
+    id: "padirac",
+    name: "Padirac",
+    distance: 58.2,
+    taglineKey: "caves.padirac.tagline",
+    website: "gouffre-de-padirac.com",
+    imagePlaceholder: "Gouffre de Padirac with underground river boat ride",
+  },
+  {
+    id: "villars",
+    name: "Villars",
+    distance: 90.3,
+    taglineKey: "caves.villars.tagline",
+    website: "grotte-villars.com",
+    imagePlaceholder: "Grotte de Villars with prehistoric paintings and formations",
+  },
+  {
+    id: "beaussac",
+    name: "Beaussac",
+    distance: 116,
+    taglineKey: "caves.beaussac.tagline",
+    imagePlaceholder: "Grotte de Beaussac natural cave site",
+  },
+];
