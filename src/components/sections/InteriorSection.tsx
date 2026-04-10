@@ -19,7 +19,7 @@ export default function InteriorSection() {
   const items = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   return (
-    <section className="py-16 md:py-20 bg-white">
+    <section aria-labelledby="interior-heading" className="py-16 md:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Text */}
@@ -27,6 +27,7 @@ export default function InteriorSection() {
             <AnimatedText
               text={t("title")}
               as="h2"
+              id="interior-heading"
               className="font-heading text-3xl md:text-4xl lg:text-5xl text-navy font-light leading-tight mb-10"
             />
 

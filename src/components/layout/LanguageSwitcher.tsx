@@ -20,6 +20,8 @@ export default function LanguageSwitcher({ isScrolled }: Props) {
   return (
     <button
       onClick={switchLocale}
+      aria-label={currentLocale === "fr" ? "Switch to English" : "Passer en français"}
+      lang={otherLocale}
       className={`font-accent text-sm font-medium tracking-wide uppercase transition-colors duration-300 ${
         isScrolled
           ? "text-charcoal hover:text-peach"

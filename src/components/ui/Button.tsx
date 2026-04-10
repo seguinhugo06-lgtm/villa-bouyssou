@@ -11,10 +11,11 @@ type Props = {
   variant?: "primary" | "secondary" | "outline";
   size?: "sm" | "md" | "lg";
   className?: string;
+  "aria-label"?: string;
 };
 
 const variants = {
-  primary: "bg-peach text-white hover:bg-peach-dark",
+  primary: "bg-peach-button text-white hover:bg-peach-button-hover",
   secondary: "bg-navy text-white hover:bg-navy-light",
   outline: "border-2 border-peach text-peach hover:bg-peach hover:text-white",
 };
@@ -32,6 +33,7 @@ export default function Button({
   variant = "primary",
   size = "md",
   className = "",
+  "aria-label": ariaLabel,
 }: Props) {
   const baseClasses = `inline-flex items-center justify-center gap-2 rounded-full font-accent font-medium transition-all duration-300 hover:scale-[1.02] ${variants[variant]} ${sizes[size]} ${className}`;
 
@@ -44,6 +46,7 @@ export default function Button({
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         className={baseClasses}
+        aria-label={ariaLabel}
       >
         {children}
       </MotionLink>
@@ -56,6 +59,7 @@ export default function Button({
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       className={baseClasses}
+      aria-label={ariaLabel}
     >
       {children}
     </motion.button>

@@ -83,7 +83,7 @@ export default function LocalisationPage() {
               <p className="font-body text-lg text-charcoal">
                 7 Route de la Verperie
               </p>
-              <p className="font-body text-charcoal/60">
+              <p className="font-body text-charcoal/70">
                 24200 Sarlat-la-Canéda, Dordogne, France
               </p>
             </div>
@@ -199,11 +199,11 @@ export default function LocalisationPage() {
                       {amenity.name}
                     </h3>
                   </div>
-                  <span className="font-accent text-xs tracking-widest uppercase text-terracotta bg-terracotta/10 px-3 py-1 rounded-full">
+                  <span className="font-accent text-xs tracking-widest uppercase text-terracotta-text bg-terracotta/10 px-3 py-1 rounded-full">
                     {amenity.distance}
                   </span>
                 </div>
-                <p className="font-body text-sm text-charcoal/60 mb-2">
+                <p className="font-body text-sm text-charcoal/70 mb-2">
                   {amenity.duration}
                 </p>
                 <p className="font-body text-sm text-charcoal/70">

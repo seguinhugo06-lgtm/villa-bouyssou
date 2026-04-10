@@ -95,12 +95,12 @@ export default function CavesPage() {
               {/* Image area */}
               <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-forest/10 to-navy/10">
                 <div className="w-full h-full flex items-center justify-center">
-                  <span className="font-body text-sm text-charcoal/40 text-center px-4">
+                  <span className="font-body text-sm text-charcoal/70 text-center px-4">
                     {cave.imagePlaceholder}
                   </span>
                 </div>
                 {/* Distance badge */}
-                <div className="absolute top-3 right-3 bg-peach text-white font-accent text-xs font-semibold px-3 py-1 rounded-full shadow">
+                <div className="absolute top-3 right-3 bg-peach-button text-white font-accent text-xs font-semibold px-3 py-1 rounded-full shadow">
                   {cave.distance} km
                 </div>
                 {/* Hover overlay */}
@@ -112,7 +112,7 @@ export default function CavesPage() {
                 <h3 className="font-heading text-xl text-charcoal mb-2">
                   {cave.name}
                 </h3>
-                <p className="font-body text-sm text-charcoal/60 mb-3">
+                <p className="font-body text-sm text-charcoal/70 mb-3">
                   {cave.taglineKey}
                 </p>
                 {cave.website && (
@@ -120,7 +120,7 @@ export default function CavesPage() {
                     href={`https://${cave.website}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 font-accent text-sm text-terracotta hover:text-terracotta/80 transition-colors"
+                    className="inline-flex items-center gap-1.5 font-accent text-sm text-terracotta-text hover:text-terracotta-text/80 transition-colors"
                   >
                     Visiter le site
                     <ExternalLink className="w-3.5 h-3.5" />

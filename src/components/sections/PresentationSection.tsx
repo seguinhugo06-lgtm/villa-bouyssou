@@ -10,12 +10,12 @@ import AnimatedSection from "@/components/ui/AnimatedSection";
 import Button from "@/components/ui/Button";
 
 const features = [
-  { key: "sleeps7to9", icon: "👥" },
-  { key: "heatedPool", icon: "🏊" },
-  { key: "floorAC", icon: "❄️" },
-  { key: "fiberWifi", icon: "📶" },
-  { key: "parking", icon: "🅿️" },
-  { key: "woodFireplace", icon: "🔥" },
+  { key: "sleeps7to9", icon: "👥", ariaLabel: "Couchages" },
+  { key: "heatedPool", icon: "🏊", ariaLabel: "Piscine" },
+  { key: "floorAC", icon: "❄️", ariaLabel: "Climatisation" },
+  { key: "fiberWifi", icon: "📶", ariaLabel: "Wi-Fi" },
+  { key: "parking", icon: "🅿️", ariaLabel: "Parking" },
+  { key: "woodFireplace", icon: "🔥", ariaLabel: "Cheminée" },
 ];
 
 export default function PresentationSection() {
@@ -38,7 +38,7 @@ export default function PresentationSection() {
   }, []);
 
   return (
-    <section className="py-16 md:py-20 bg-cream">
+    <section aria-labelledby="presentation-heading" className="py-16 md:py-20 bg-cream">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Image with mask reveal */}
@@ -78,6 +78,7 @@ export default function PresentationSection() {
             <AnimatedText
               text={t("title")}
               as="h2"
+              id="presentation-heading"
               className="font-heading text-3xl md:text-4xl lg:text-5xl text-navy font-light leading-tight"
               delay={0.2}
             />
@@ -93,7 +94,7 @@ export default function PresentationSection() {
                     transition={{ delay: 0.5 + i * 0.1, duration: 0.5 }}
                     className="flex items-center gap-3"
                   >
-                    <span className="text-xl">{feature.icon}</span>
+                    <span className="text-xl" role="img" aria-label={feature.ariaLabel}>{feature.icon}</span>
                     <span className="font-body text-sm text-charcoal/80">
                       {t(`features.${feature.key}`)}
                     </span>
@@ -104,7 +105,7 @@ export default function PresentationSection() {
 
             <AnimatedSection delay={0.6}>
               <div className="mt-10">
-                <Button href={`/${locale}/la-villa/overview`} variant="outline">
+                <Button href={`/${locale}/la-villa/overview`} variant="outline" aria-label={locale === "fr" ? "En savoir plus sur la Villa Bouyssou" : "Discover more about Villa Bouyssou"}>
                   {t("discoverMore")} →
                 </Button>
               </div>

@@ -25,7 +25,7 @@ export default function SuperhoteBadge() {
           className="fixed bottom-6 right-6 z-30 hidden md:block"
         >
           <div className="bg-navy text-white text-sm font-accent font-medium px-4 py-2 rounded-full shadow-lg shadow-navy/20">
-            ★ 5.0 — Superhôte Airbnb
+            <span role="img" aria-label="Note">★</span> 5.0 — Superhôte Airbnb
           </div>
         </motion.div>
       )}

@@ -20,12 +20,13 @@ export default function TravelGuideTeaser() {
   const locale = pathname.split("/")[1] || "fr";
 
   return (
-    <section className="py-16 md:py-20 bg-cream">
+    <section aria-labelledby="travel-guide-heading" className="py-16 md:py-20 bg-cream">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-10 md:mb-16">
           <AnimatedText
             text={t("title")}
             as="h2"
+            id="travel-guide-heading"
             className="font-heading text-3xl md:text-4xl lg:text-5xl text-navy font-light"
           />
           <motion.p

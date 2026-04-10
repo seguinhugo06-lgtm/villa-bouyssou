@@ -4,9 +4,12 @@
   --color-peach: #E8A87C;
   --color-peach-light: #f0c4a8;
   --color-peach-dark: #d4926a;
+  --color-peach-button: #9c4a2d;
+  --color-peach-button-hover: #8a3f26;
   --color-navy: #1B2A4A;
   --color-navy-light: #2a3d66;
   --color-terracotta: #CC5A47;
+  --color-terracotta-text: #8a5730;
   --color-cream: #FAF8F5;
   --color-charcoal: #2D2D2D;
   --color-forest: #2D5C4F;
@@ -167,6 +170,49 @@ html.lenis body {
 
 .hero-date-input::placeholder {
   color: rgba(255, 255, 255, 0.5);
+}
+
+/* Screen reader only utility (backup for Tailwind sr-only) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Accessible focus styles */
+*:focus-visible {
+  outline: 3px solid var(--color-navy);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* On dark backgrounds */
+header *:focus-visible,
+.bg-navy *:focus-visible,
+.bg-charcoal *:focus-visible,
+.bg-forest *:focus-visible {
+  outline-color: var(--color-peach);
+}
+
+/* Remove default outline for mouse users */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Selection */

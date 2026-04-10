@@ -48,10 +48,10 @@ export default function Footer() {
 
           {/* Navigation */}
           <motion.div variants={fadeInUp} transition={{ duration: 0.6 }}>
-            <h4 className="font-heading text-lg font-semibold mb-6 text-peach">
+            <h3 className="font-heading text-lg font-semibold mb-6 text-peach">
               Navigation
-            </h4>
-            <nav className="flex flex-col gap-3">
+            </h3>
+            <nav aria-label="Navigation du pied de page" className="flex flex-col gap-3">
               {[
                 { href: `/${locale}`, label: nav("home") },
                 { href: `/${locale}/la-villa/overview`, label: nav("villa") },
@@ -62,7 +62,7 @@ export default function Footer() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="font-body text-sm text-white/70 hover:text-peach transition-colors duration-300"
+                  className="font-body text-sm text-white/70 hover:text-peach transition-colors duration-300 min-h-[44px] inline-flex items-center"
                 >
                   {link.label}
                 </Link>
@@ -72,19 +72,19 @@ export default function Footer() {
 
           {/* Contact */}
           <motion.div variants={fadeInUp} transition={{ duration: 0.6 }}>
-            <h4 className="font-heading text-lg font-semibold mb-6 text-peach">
+            <h3 className="font-heading text-lg font-semibold mb-6 text-peach">
               Contact
-            </h4>
+            </h3>
             <div className="flex flex-col gap-3 font-body text-sm text-white/70">
               <a
                 href={`mailto:${contact("email")}`}
-                className="hover:text-peach transition-colors duration-300"
+                className="hover:text-peach transition-colors duration-300 min-h-[44px] inline-flex items-center"
               >
                 {contact("email")}
               </a>
               <a
                 href={`tel:${contact("phone").replace(/\s/g, "")}`}
-                className="hover:text-peach transition-colors duration-300"
+                className="hover:text-peach transition-colors duration-300 min-h-[44px] inline-flex items-center"
               >
                 {contact("phone")}
               </a>
@@ -93,19 +93,19 @@ export default function Footer() {
 
           {/* Legal & Language */}
           <motion.div variants={fadeInUp} transition={{ duration: 0.6 }}>
-            <h4 className="font-heading text-lg font-semibold mb-6 text-peach">
+            <h3 className="font-heading text-lg font-semibold mb-6 text-peach">
               {locale === "fr" ? "Informations" : "Information"}
-            </h4>
+            </h3>
             <div className="flex flex-col gap-3 font-body text-sm text-white/70">
               <Link
                 href={`/${locale}/mentions-legales`}
-                className="hover:text-peach transition-colors duration-300"
+                className="hover:text-peach transition-colors duration-300 min-h-[44px] inline-flex items-center"
               >
                 {t("legalNotice")}
               </Link>
               <Link
                 href={`/${locale}/politique-de-confidentialite`}
-                className="hover:text-peach transition-colors duration-300"
+                className="hover:text-peach transition-colors duration-300 min-h-[44px] inline-flex items-center"
               >
                 {t("privacyPolicy")}
               </Link>
@@ -121,10 +121,10 @@ export default function Footer() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4"
         >
-          <p className="font-body text-xs text-white/50">{t("rights")}</p>
+          <p className="font-body text-xs text-white/70">{t("rights")}</p>
           <div className="flex items-center gap-4">
-            <span className="font-body text-xs text-white/50">EUR (€)</span>
-            <span className="font-body text-xs text-white/50">
+            <span className="font-body text-xs text-white/70">EUR (€)</span>
+            <span className="font-body text-xs text-white/70">
               {locale === "fr" ? "Français" : "English"}
             </span>
           </div>

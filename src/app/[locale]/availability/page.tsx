@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect, useCallback } from "react";
+import { useState, useMemo, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedText from "@/components/ui/AnimatedText";
 import { ChevronLeft, ChevronRight, X, Loader2, Check } from "lucide-react";
@@ -67,6 +67,7 @@ function CalendarMonth({
   unavailableDates: Set<string>;
   onDateClick: (dateStr: string) => void;
 }) {
+  const gridRef = useRef<HTMLDivElement>(null);
   const daysInMonth = getDaysInMonth(year, month);
   const firstDay = getFirstDayOfMonth(year, month);
   const today = new Date();
@@ -76,9 +77,50 @@ function CalendarMonth({
     today.getDate()
   );
 
+  function handleGridKeyDown(e: React.KeyboardEvent) {
+    const target = e.target as HTMLElement;
+    const dayAttr = target.getAttribute("data-day");
+    if (!dayAttr) return;
+
+    let currentDay = parseInt(dayAttr, 10);
+    let nextDay = currentDay;
+
+    switch (e.key) {
+      case "ArrowRight":
+        nextDay = Math.min(currentDay + 1, daysInMonth);
+        break;
+      case "ArrowLeft":
+        nextDay = Math.max(currentDay - 1, 1);
+        break;
+      case "ArrowDown":
+        nextDay = Math.min(currentDay + 7, daysInMonth);
+        break;
+      case "ArrowUp":
+        nextDay = Math.max(currentDay - 7, 1);
+        break;
+      case "Enter":
+      case " ": {
+        e.preventDefault();
+        const dateStr = formatDate(year, month, currentDay);
+        const isUnavailable = unavailableDates.has(dateStr);
+        const isPast = dateStr < todayStr;
+        if (!isUnavailable && !isPast) onDateClick(dateStr);
+        return;
+      }
+      default:
+        return;
+    }
+
+    e.preventDefault();
+    const nextEl = gridRef.current?.querySelector(
+      `[data-day="${nextDay}"]`
+    ) as HTMLElement | null;
+    nextEl?.focus();
+  }
+
   const cells = [];
   for (let i = 0; i < firstDay; i++) {
-    cells.push(<div key={`empty-${i}`} />);
+    cells.push(<div key={`empty-${i}`} role="gridcell" />);
   }
 
   for (let day = 1; day <= daysInMonth; day++) {
@@ -90,11 +132,14 @@ function CalendarMonth({
     const isInRange =
       startDate && endDate && dateStr > startDate && dateStr < endDate;
     const isSelected = isStart || isEnd;
+    const isDisabled = isUnavailable || isPast;
+
+    const dayLabel = `${day} ${MONTHS_FR[month]} ${year}, ${isDisabled ? "indisponible" : "disponible"}`;
 
     let classes =
       "relative h-10 md:h-12 flex items-center justify-center text-sm md:text-base rounded-lg transition-all duration-200 ";
 
-    if (isUnavailable || isPast) {
+    if (isDisabled) {
       classes += "text-charcoal/25 cursor-not-allowed line-through";
     } else if (isSelected) {
       classes +=
@@ -109,10 +154,15 @@ function CalendarMonth({
     cells.push(
       <motion.div
         key={day}
-        whileTap={!isUnavailable && !isPast ? { scale: 0.9 } : undefined}
+        role="gridcell"
+        tabIndex={isDisabled ? -1 : 0}
+        aria-disabled={isDisabled ? "true" : undefined}
+        aria-label={dayLabel}
+        data-day={day}
+        whileTap={!isDisabled ? { scale: 0.9 } : undefined}
         className={classes}
         onClick={() => {
-          if (!isUnavailable && !isPast) onDateClick(dateStr);
+          if (!isDisabled) onDateClick(dateStr);
         }}
       >
         {day}
@@ -125,17 +175,26 @@ function CalendarMonth({
       <h3 className="font-heading text-xl md:text-2xl text-navy text-center mb-4 font-light">
         {MONTHS_FR[month]} {year}
       </h3>
-      <div className="grid grid-cols-7 gap-1 mb-2">
+      <div className="grid grid-cols-7 gap-1 mb-2" role="row">
         {DAYS_FR.map((d) => (
           <div
             key={d}
-            className="h-8 flex items-center justify-center text-xs font-accent text-charcoal/50 uppercase tracking-wider"
+            role="columnheader"
+            className="h-8 flex items-center justify-center text-xs font-accent text-charcoal/70 uppercase tracking-wider"
           >
             {d}
           </div>
         ))}
       </div>
-      <div className="grid grid-cols-7 gap-1">{cells}</div>
+      <div
+        ref={gridRef}
+        role="grid"
+        aria-label={`Disponibilités ${MONTHS_FR[month]} ${year}`}
+        onKeyDown={handleGridKeyDown}
+        className="grid grid-cols-7 gap-1"
+      >
+        {cells}
+      </div>
     </div>
   );
 }
@@ -218,14 +277,14 @@ function BookingModal({
             onClick={onClose}
             className="p-2 rounded-full hover:bg-charcoal/5 transition-colors"
           >
-            <X className="w-5 h-5 text-charcoal/60" />
+            <X className="w-5 h-5 text-charcoal/70" />
           </button>
         </div>
 
         <div className="p-6">
           {/* Summary bar */}
           <div className="bg-cream rounded-xl p-4 mb-6">
-            <div className="flex justify-between text-sm font-body text-charcoal/60 mb-1">
+            <div className="flex justify-between text-sm font-body text-charcoal/70 mb-1">
               <span>
                 {startDate} &rarr; {endDate}
               </span>
@@ -236,7 +295,7 @@ function BookingModal({
             {priceData && (
               <div className="flex justify-between items-end mt-2">
                 <div>
-                  <p className="text-xs text-charcoal/40">
+                  <p className="text-xs text-charcoal/70">
                     {priceData.averageNightlyRate} EUR/nuit moy.
                     {priceData.cleaningFee > 0 &&
                       ` + ${priceData.cleaningFee} EUR menage`}
@@ -244,7 +303,7 @@ function BookingModal({
                 </div>
                 <p className="font-heading text-2xl text-navy">
                   {priceData.totalPrice}{" "}
-                  <span className="text-sm text-charcoal/40">EUR</span>
+                  <span className="text-sm text-charcoal/70">EUR</span>
                 </p>
               </div>
             )}
@@ -254,7 +313,7 @@ function BookingModal({
           {step === "form" && (
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-sm font-accent text-charcoal/60 uppercase tracking-wider mb-1">
+                <label className="block text-sm font-accent text-charcoal/70 uppercase tracking-wider mb-1">
                   Nom complet *
                 </label>
                 <input
@@ -270,7 +329,7 @@ function BookingModal({
               </div>
 
               <div>
-                <label className="block text-sm font-accent text-charcoal/60 uppercase tracking-wider mb-1">
+                <label className="block text-sm font-accent text-charcoal/70 uppercase tracking-wider mb-1">
                   Email *
                 </label>
                 <input
@@ -287,7 +346,7 @@ function BookingModal({
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-accent text-charcoal/60 uppercase tracking-wider mb-1">
+                  <label className="block text-sm font-accent text-charcoal/70 uppercase tracking-wider mb-1">
                     Telephone
                   </label>
                   <input
@@ -301,7 +360,7 @@ function BookingModal({
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-accent text-charcoal/60 uppercase tracking-wider mb-1">
+                  <label className="block text-sm font-accent text-charcoal/70 uppercase tracking-wider mb-1">
                     Voyageurs *
                   </label>
                   <select
@@ -325,7 +384,7 @@ function BookingModal({
               </div>
 
               <div>
-                <label className="block text-sm font-accent text-charcoal/60 uppercase tracking-wider mb-1">
+                <label className="block text-sm font-accent text-charcoal/70 uppercase tracking-wider mb-1">
                   Message
                 </label>
                 <textarea
@@ -352,7 +411,7 @@ function BookingModal({
           {step === "submitting" && (
             <div className="flex flex-col items-center py-12">
               <Loader2 className="w-10 h-10 text-peach animate-spin mb-4" />
-              <p className="font-body text-charcoal/60">
+              <p className="font-body text-charcoal/70">
                 Envoi en cours...
               </p>
             </div>
@@ -367,13 +426,13 @@ function BookingModal({
               <h3 className="font-heading text-xl text-navy mb-2">
                 Demande envoyee !
               </h3>
-              <p className="font-body text-charcoal/60 max-w-sm">
+              <p className="font-body text-charcoal/70 max-w-sm">
                 Nous avons bien recu votre demande de reservation. Vous
                 recevrez un email de confirmation sous peu.
               </p>
               <button
                 onClick={onClose}
-                className="mt-6 font-accent text-sm uppercase tracking-widest text-terracotta hover:text-terracotta/80 transition-colors"
+                className="mt-6 font-accent text-sm uppercase tracking-widest text-terracotta-text hover:text-terracotta-text/80 transition-colors"
               >
                 Fermer
               </button>
@@ -387,10 +446,10 @@ function BookingModal({
                 <X className="w-8 h-8 text-red-600" />
               </div>
               <h3 className="font-heading text-xl text-navy mb-2">Erreur</h3>
-              <p className="font-body text-charcoal/60 max-w-sm">{errorMsg}</p>
+              <p className="font-body text-charcoal/70 max-w-sm">{errorMsg}</p>
               <button
                 onClick={() => setStep("form")}
-                className="mt-6 font-accent text-sm uppercase tracking-widest text-terracotta hover:text-terracotta/80 transition-colors"
+                className="mt-6 font-accent text-sm uppercase tracking-widest text-terracotta-text hover:text-terracotta-text/80 transition-colors"
               >
                 Reessayer
               </button>
@@ -535,7 +594,7 @@ export default function AvailabilityPage() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="mt-4 font-body text-charcoal/60 text-lg"
+            className="mt-4 font-body text-charcoal/70 text-lg"
           >
             Selectionnez votre date d&apos;arrivee
           </motion.p>
@@ -602,7 +661,7 @@ export default function AvailabilityPage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6 }}
-          className="flex items-center justify-center gap-6 mt-8 text-sm font-body text-charcoal/60"
+          className="flex items-center justify-center gap-6 mt-8 text-sm font-body text-charcoal/70"
         >
           <span className="flex items-center gap-2">
             <span className="w-4 h-4 rounded bg-peach inline-block" />
@@ -627,7 +686,7 @@ export default function AvailabilityPage() {
         >
           {startDate && endDate && priceData ? (
             <>
-              <p className="font-body text-charcoal/60 mb-2">
+              <p className="font-body text-charcoal/70 mb-2">
                 {nightCount} nuit{nightCount > 1 ? "s" : ""} selectionnee
                 {nightCount > 1 ? "s" : ""}
               </p>
@@ -637,11 +696,11 @@ export default function AvailabilityPage() {
                 ) : (
                   <>
                     {priceData.totalPrice}
-                    <span className="text-xl text-charcoal/40 ml-1">EUR</span>
+                    <span className="text-xl text-charcoal/70 ml-1">EUR</span>
                   </>
                 )}
               </p>
-              <p className="mt-1 font-body text-sm text-charcoal/40">
+              <p className="mt-1 font-body text-sm text-charcoal/70">
                 {priceData.averageNightlyRate} EUR/nuit moy. +{" "}
                 {priceData.cleaningFee} EUR menage
               </p>
@@ -650,14 +709,14 @@ export default function AvailabilityPage() {
             <Loader2 className="w-8 h-8 text-peach animate-spin mx-auto" />
           ) : (
             <>
-              <p className="font-body text-charcoal/60 mb-2">A partir de</p>
+              <p className="font-body text-charcoal/70 mb-2">A partir de</p>
               <p className="font-heading text-4xl md:text-5xl text-navy font-light">
                 380
-                <span className="text-xl text-charcoal/40 ml-1">
+                <span className="text-xl text-charcoal/70 ml-1">
                   EUR / nuit
                 </span>
               </p>
-              <p className="mt-1 font-body text-sm text-charcoal/40">
+              <p className="mt-1 font-body text-sm text-charcoal/70">
                 Selectionnez vos dates pour voir le total
               </p>
             </>
@@ -673,7 +732,7 @@ export default function AvailabilityPage() {
             className={`mt-8 inline-block font-accent text-sm uppercase tracking-widest px-10 py-4 rounded-full transition-all duration-300 ${
               startDate && endDate
                 ? "bg-terracotta hover:bg-terracotta/90 text-white hover:shadow-lg hover:-translate-y-0.5 cursor-pointer"
-                : "bg-charcoal/20 text-charcoal/40 cursor-not-allowed"
+                : "bg-charcoal/20 text-charcoal/70 cursor-not-allowed"
             }`}
           >
             Reserver maintenant

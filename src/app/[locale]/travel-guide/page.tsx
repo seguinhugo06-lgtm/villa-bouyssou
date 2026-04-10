@@ -166,7 +166,7 @@ export default function TravelGuidePage() {
 
                     {/* Coming soon badge */}
                     {cat.comingSoon && (
-                      <div className="absolute top-3 right-3 bg-peach text-white font-accent text-xs px-3 py-1 rounded-full">
+                      <div className="absolute top-3 right-3 bg-peach-button text-white font-accent text-xs px-3 py-1 rounded-full">
                         {t('comingSoon')}
                       </div>
                     )}

@@ -13,7 +13,6 @@ const heroImages = [
   { src: "/images/hero/terrasse-piscine.jpg", alt: "Terrasse avec piscine" },
   { src: "/images/hero/patio-chaise.jpg", alt: "Patio avec chaise suspendue" },
   { src: "/images/hero/jardin-vue.jpg", alt: "Vue jardin" },
-  { src: "/images/hero/piscine-bouees.jpg", alt: "Piscine avec bouées" },
   { src: "/images/hero/villa-exterieur.jpg", alt: "Extérieur de la villa" },
 ];
 
@@ -33,7 +32,12 @@ export default function Hero() {
   }, [nextImage]);
 
   return (
-    <section className="relative h-screen w-full overflow-hidden">
+    <section
+      className="relative h-screen w-full overflow-hidden"
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Photos de la villa"
+    >
       {/* Background slideshow with Ken Burns */}
       <AnimatePresence mode="wait">
         <motion.div
@@ -43,6 +47,8 @@ export default function Hero() {
           exit={{ opacity: 0 }}
           transition={{ duration: 1.5, ease: "easeInOut" }}
           className="absolute inset-0 will-change-transform"
+          aria-live="polite"
+          aria-atomic="true"
         >
           <div className="absolute inset-0 ken-burns will-change-transform">
             <Image
@@ -85,45 +91,61 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.2 }}
-          className="mt-12 w-full max-w-md md:max-w-none md:w-auto bg-white/10 backdrop-blur-lg rounded-2xl p-4 md:p-6 flex flex-col md:flex-row items-stretch md:items-center gap-4"
+          className="mt-12 w-full max-w-md md:max-w-none md:w-auto"
         >
-          <div className="flex flex-col w-full md:w-auto">
-            <label className="text-xs text-white/60 font-accent uppercase tracking-wider mb-1">
-              {t("checkIn")}
-            </label>
-            <div className="hero-date-wrapper">
-              <input
-                type="date"
-                className="hero-date-input w-full"
-              />
+          <form
+            role="search"
+            aria-label="Recherche de disponibilités"
+            className="bg-white/10 backdrop-blur-lg rounded-2xl p-4 md:p-6 flex flex-col md:flex-row items-stretch md:items-center gap-4"
+          >
+            <div className="flex flex-col w-full md:w-auto">
+              <label htmlFor="arrival-date" className="text-xs text-white/70 font-accent uppercase tracking-wider mb-1">
+                {t("checkIn")}
+              </label>
+              <div className="hero-date-wrapper">
+                <input
+                  type="date"
+                  id="arrival-date"
+                  name="arrival-date"
+                  aria-required="true"
+                  className="hero-date-input w-full"
+                />
+              </div>
             </div>
-          </div>
-          <div className="flex flex-col w-full md:w-auto">
-            <label className="text-xs text-white/60 font-accent uppercase tracking-wider mb-1">
-              {t("checkOut")}
-            </label>
-            <div className="hero-date-wrapper">
-              <input
-                type="date"
-                className="hero-date-input w-full"
-              />
+            <div className="flex flex-col w-full md:w-auto">
+              <label htmlFor="departure-date" className="text-xs text-white/70 font-accent uppercase tracking-wider mb-1">
+                {t("checkOut")}
+              </label>
+              <div className="hero-date-wrapper">
+                <input
+                  type="date"
+                  id="departure-date"
+                  name="departure-date"
+                  aria-required="true"
+                  className="hero-date-input w-full"
+                />
+              </div>
             </div>
-          </div>
-          <div className="flex flex-col w-full md:w-auto">
-            <label className="text-xs text-white/60 font-accent uppercase tracking-wider mb-1">
-              {t("guests")}
-            </label>
-            <select className="bg-white/10 border border-white/20 rounded-lg px-4 py-2 text-white font-body text-sm focus:outline-none focus:border-peach transition-colors w-full md:w-auto">
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
-                <option key={n} value={n} className="text-charcoal">
-                  {n}
-                </option>
-              ))}
-            </select>
-          </div>
-          <Button href={`/${locale}/availability`} variant="primary" size="md">
-            {t("bookNow")}
-          </Button>
+            <div className="flex flex-col w-full md:w-auto">
+              <label htmlFor="guests" className="text-xs text-white/70 font-accent uppercase tracking-wider mb-1">
+                {t("guests")}
+              </label>
+              <select
+                id="guests"
+                name="guests"
+                className="bg-white/10 border border-white/20 rounded-lg px-4 py-2 text-white font-body text-sm focus:outline-none focus:border-peach transition-colors w-full md:w-auto"
+              >
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
+                  <option key={n} value={n} className="text-charcoal">
+                    {n}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <Button href={`/${locale}/availability`} variant="primary" size="md">
+              {t("bookNow")}
+            </Button>
+          </form>
         </motion.div>
       </div>
 
@@ -136,7 +158,8 @@ export default function Hero() {
             className={`w-2 h-2 rounded-full transition-all duration-500 ${
               i === currentImage ? "bg-peach w-8" : "bg-white/50"
             }`}
-            aria-label={`Go to slide ${i + 1}`}
+            aria-label={`Aller à la photo ${i + 1}`}
+            aria-current={i === currentImage ? "true" : undefined}
           />
         ))}
       </div>

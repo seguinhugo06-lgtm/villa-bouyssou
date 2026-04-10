@@ -27,12 +27,13 @@ export default function BedroomsSection() {
   const t = useTranslations("bedrooms");
 
   return (
-    <section className="py-16 md:py-20 bg-cream">
+    <section aria-labelledby="bedrooms-heading" className="py-16 md:py-20 bg-cream">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <AnimatedText
             text={t("title")}
             as="h2"
+            id="bedrooms-heading"
             className="font-heading text-3xl md:text-4xl lg:text-5xl text-navy font-light"
           />
           <motion.p
@@ -80,10 +81,10 @@ export default function BedroomsSection() {
                 >
                   {t(`rooms.${room.id}.name`)}
                 </h3>
-                <p className="font-body text-sm text-charcoal/60 mb-2">
+                <p className="font-body text-sm text-charcoal/70 mb-2">
                   {t(`rooms.${room.id}.capacity`)}
                 </p>
-                <p className="font-body text-sm text-charcoal/60 mb-3">
+                <p className="font-body text-sm text-charcoal/70 mb-3">
                   {t(`rooms.${room.id}.bedSize`)}
                 </p>
                 <p className="font-body text-sm text-charcoal/70">

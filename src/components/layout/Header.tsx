@@ -71,12 +71,12 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8">
+          <nav aria-label="Navigation principale" className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`relative font-accent text-sm font-medium tracking-wide transition-colors duration-300 group ${
+                className={`relative min-h-[44px] inline-flex items-center px-2 font-accent text-sm font-medium tracking-wide transition-colors duration-300 group ${
                   isScrolled
                     ? "text-charcoal hover:text-peach"
                     : "text-white/90 hover:text-white"
@@ -92,7 +92,7 @@ export default function Header() {
           {/* Book CTA */}
           <Link
             href={`/${locale}/availability`}
-            className="hidden lg:flex items-center gap-2 bg-peach text-white px-6 py-2.5 rounded-full font-accent text-sm font-medium hover:bg-peach-dark transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-peach/30"
+            className="hidden lg:flex items-center gap-2 bg-peach-button text-white min-h-[44px] px-6 py-2.5 rounded-full font-accent text-sm font-medium hover:bg-peach-button-hover transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-peach/30"
           >
             {t("book")}
           </Link>
@@ -100,8 +100,11 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileOpen(!isMobileOpen)}
-            className="lg:hidden relative z-50 w-8 h-8 flex flex-col items-center justify-center gap-1.5"
-            aria-label="Toggle menu"
+            className="lg:hidden relative z-50 w-11 h-11 flex flex-col items-center justify-center gap-1.5"
+            aria-label={isMobileOpen ? "Fermer le menu" : "Ouvrir le menu"}
+            aria-expanded={isMobileOpen}
+            aria-controls="mobile-menu"
+            aria-haspopup="true"
           >
             <span
               className={`block w-6 h-[2px] transition-all duration-300 ${

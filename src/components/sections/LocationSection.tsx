@@ -13,7 +13,7 @@ export default function LocationSection() {
   const locale = pathname.split("/")[1] || "fr";
 
   return (
-    <section className="py-16 md:py-20 bg-navy text-white relative overflow-hidden">
+    <section aria-labelledby="location-heading" className="py-16 md:py-20 bg-navy text-white relative overflow-hidden">
       {/* Decorative circles */}
       <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full border border-white/5" />
       <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full border border-white/5" />
@@ -37,6 +37,7 @@ export default function LocationSection() {
             <AnimatedText
               text={t("title")}
               as="h2"
+              id="location-heading"
               className="font-heading text-3xl md:text-4xl lg:text-5xl font-light leading-tight"
             />
 
@@ -85,7 +86,7 @@ export default function LocationSection() {
                 <p className="font-heading text-xl text-white/80">
                   7 Route de la Verperie
                 </p>
-                <p className="font-body text-sm text-white/50 mt-1">
+                <p className="font-body text-sm text-white/70 mt-1">
                   24200 Sarlat-la-Canéda
                 </p>
               </div>

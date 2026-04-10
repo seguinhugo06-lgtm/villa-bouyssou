@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
@@ -14,8 +15,21 @@ type Props = {
 export default function MobileMenu({ navLinks, locale, onClose }: Props) {
   const t = useTranslations("nav");
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [onClose]);
+
   return (
     <motion.div
+      id="mobile-menu"
+      role="dialog"
+      aria-modal="true"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -33,7 +47,7 @@ export default function MobileMenu({ navLinks, locale, onClose }: Props) {
             <Link
               href={link.href}
               onClick={onClose}
-              className="font-heading text-3xl text-navy hover:text-peach transition-colors duration-300"
+              className="font-heading text-3xl text-navy hover:text-peach transition-colors duration-300 min-h-[44px] inline-flex items-center px-2"
             >
               {link.label}
             </Link>
@@ -49,7 +63,7 @@ export default function MobileMenu({ navLinks, locale, onClose }: Props) {
           <Link
             href={`/${locale}/availability`}
             onClick={onClose}
-            className="bg-peach text-white px-8 py-3 rounded-full font-accent text-lg font-medium hover:bg-peach-dark transition-colors duration-300"
+            className="bg-peach-button text-white min-h-[44px] px-8 py-3 rounded-full font-accent text-lg font-medium hover:bg-peach-button-hover transition-colors duration-300"
           >
             {t("book")}
           </Link>

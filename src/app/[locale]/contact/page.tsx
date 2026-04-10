@@ -59,7 +59,7 @@ function FloatingInput({
         className={`absolute left-0 transition-all duration-300 pointer-events-none font-body ${
           focused || hasValue
             ? "top-0 text-xs text-peach"
-            : "top-6 text-base text-charcoal/40"
+            : "top-6 text-base text-charcoal/70"
         }`}
       >
         {label}
@@ -130,7 +130,7 @@ export default function ContactPage() {
               <h2 className="font-heading text-2xl md:text-3xl text-navy font-light mb-2">
                 Elina Bouyssou
               </h2>
-              <p className="font-body text-charcoal/60 text-sm mb-6">
+              <p className="font-body text-charcoal/70 text-sm mb-6">
                 {t("hostSubtitle")}
               </p>
 
@@ -294,7 +294,7 @@ export default function ContactPage() {
                 className="peer w-full bg-transparent border-b-2 border-navy/15 focus:border-peach px-0 pt-6 pb-2 font-body text-charcoal outline-none transition-colors duration-300 resize-none"
                 placeholder=" "
               />
-              <label className="absolute left-0 top-0 text-xs text-peach font-body peer-placeholder-shown:top-6 peer-placeholder-shown:text-base peer-placeholder-shown:text-charcoal/40 transition-all duration-300 pointer-events-none peer-focus:top-0 peer-focus:text-xs peer-focus:text-peach">
+              <label className="absolute left-0 top-0 text-xs text-peach font-body peer-placeholder-shown:top-6 peer-placeholder-shown:text-base peer-placeholder-shown:text-charcoal/70 transition-all duration-300 pointer-events-none peer-focus:top-0 peer-focus:text-xs peer-focus:text-peach">
                 {t("comment")}
               </label>
             </motion.div>

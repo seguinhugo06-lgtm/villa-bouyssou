@@ -26,11 +26,12 @@ export default function PlatformsSection() {
   const t = useTranslations("platforms");
 
   return (
-    <section className="py-16 md:py-20 bg-white">
+    <section aria-labelledby="platforms-heading" className="py-16 md:py-20 bg-white">
       <div className="max-w-4xl mx-auto px-6 text-center">
         <AnimatedText
           text={t("title")}
           as="h2"
+          id="platforms-heading"
           className="font-heading text-3xl md:text-4xl text-navy font-light"
         />
 
@@ -74,7 +75,7 @@ export default function PlatformsSection() {
                     </motion.div>
                   ))}
                 </div>
-                <p className="font-body text-sm text-charcoal/60">
+                <p className="font-body text-sm text-charcoal/70">
                   {platform.badge}
                 </p>
               </motion.div>
@@ -94,7 +95,7 @@ export default function PlatformsSection() {
             {t("airbnbFavorite")}
           </span>
           <span className="bg-peach/10 text-peach font-accent text-xs font-medium px-4 py-2 rounded-full">
-            ★ {t("superhostBadge")}
+            <span role="img" aria-label="Note">★</span> {t("superhostBadge")}
           </span>
         </motion.div>
       </div>

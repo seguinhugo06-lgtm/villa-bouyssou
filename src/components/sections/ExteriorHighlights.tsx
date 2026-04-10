@@ -23,7 +23,7 @@ export default function ExteriorHighlights() {
   const archParallaxY = useTransform(archProgress, [0, 1], [-20, 20]);
 
   return (
-    <section className="py-16 md:py-20 bg-cream overflow-hidden">
+    <section aria-label="Extérieurs et piscine" className="py-16 md:py-20 bg-cream overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         {/* First block */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center mb-16 lg:mb-24">

@@ -19,6 +19,7 @@ const equipmentCategories = [
   {
     title: "Piscine & Spa",
     icon: "🏊",
+    ariaLabel: "Piscine",
     items: [
       "Piscine chauffée 11×4m (profondeur 1,50m)",
       "Couverture de piscine électrique",
@@ -29,6 +30,7 @@ const equipmentCategories = [
   {
     title: "Parking",
     icon: "🚗",
+    ariaLabel: "Parking",
     items: [
       "Parking privé gratuit sur place",
       "Espace pour 3 véhicules",
@@ -37,6 +39,7 @@ const equipmentCategories = [
   {
     title: "Services",
     icon: "🛎️",
+    ariaLabel: "Services",
     items: [
       "Accueil personnalisé",
       "Linge de maison fourni",
@@ -48,6 +51,7 @@ const equipmentCategories = [
   {
     title: "Règles",
     icon: "📋",
+    ariaLabel: "Règles",
     items: [
       "Non-fumeur à l'intérieur",
       "Animaux bienvenus",
@@ -58,6 +62,7 @@ const equipmentCategories = [
   {
     title: "Divertissement",
     icon: "🎮",
+    ariaLabel: "Divertissement",
     items: [
       "Table de ping-pong",
       "Jeux de société",
@@ -69,6 +74,7 @@ const equipmentCategories = [
   {
     title: "Cuisine",
     icon: "🍳",
+    ariaLabel: "Cuisine",
     items: [
       "Cuisine entièrement équipée",
       "Lave-vaisselle",
@@ -82,6 +88,7 @@ const equipmentCategories = [
   {
     title: "Location",
     icon: "📍",
+    ariaLabel: "Localisation",
     items: [
       "500m du centre historique de Sarlat",
       "Quartier résidentiel calme",
@@ -92,6 +99,7 @@ const equipmentCategories = [
   {
     title: "Salle de bain",
     icon: "🚿",
+    ariaLabel: "Salle de bain",
     items: [
       "3 salles de bain privées",
       "Douches à l'italienne",
@@ -102,6 +110,7 @@ const equipmentCategories = [
   {
     title: "Chauffage",
     icon: "🌡️",
+    ariaLabel: "Chauffage",
     items: [
       "Climatisation réversible au sol",
       "Cheminée à bois (salon)",
@@ -111,6 +120,7 @@ const equipmentCategories = [
   {
     title: "Internet",
     icon: "📶",
+    ariaLabel: "Wi-Fi",
     items: [
       "Wi-Fi fibre optique haut débit",
       "Couverture dans toute la villa et le jardin",
@@ -119,6 +129,7 @@ const equipmentCategories = [
   {
     title: "Sécurité",
     icon: "🔒",
+    ariaLabel: "Sécurité",
     items: [
       "Portail électrique",
       "Détecteurs de fumée",
@@ -128,9 +139,9 @@ const equipmentCategories = [
   },
 ];
 
-const houseRules = [
-  { label: "Arrivée", value: "À partir de 16h00" },
-  { label: "Départ", value: "Avant 10h00" },
+const houseRules: { label: string; value: string; time?: string; dateTime?: string }[] = [
+  { label: "Arrivée", value: "À partir de ", time: "16h00", dateTime: "16:00" },
+  { label: "Départ", value: "Avant ", time: "10h00", dateTime: "10:00" },
   { label: "Ménage", value: "Ménage de fin de séjour inclus" },
   { label: "Paiement", value: "Cartes bancaires acceptées" },
   { label: "Enfants", value: "Bienvenus (lit bébé disponible)" },
@@ -233,7 +244,7 @@ export default function OverviewPage() {
               <span className="font-heading text-2xl text-navy font-semibold">
                 {stat.value}
               </span>
-              <span className="font-body text-charcoal/60 text-sm">
+              <span className="font-body text-charcoal/70 text-sm">
                 {stat.label}
               </span>
               {i < 3 && (
@@ -437,10 +448,10 @@ export default function OverviewPage() {
                   >
                     {room.name}
                   </h3>
-                  <p className="font-body text-sm text-charcoal/60 mb-1">
+                  <p className="font-body text-sm text-charcoal/70 mb-1">
                     {room.capacity}
                   </p>
-                  <p className="font-body text-sm text-charcoal/60 mb-1">
+                  <p className="font-body text-sm text-charcoal/70 mb-1">
                     {room.bed}
                   </p>
                   <p className="font-body text-sm text-charcoal/70">
@@ -473,7 +484,7 @@ export default function OverviewPage() {
                 className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow"
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="text-2xl">{cat.icon}</span>
+                  <span className="text-2xl" role="img" aria-label={cat.ariaLabel}>{cat.icon}</span>
                   <h3 className="font-heading text-lg text-navy font-semibold">
                     {cat.title}
                   </h3>
@@ -521,7 +532,10 @@ export default function OverviewPage() {
                   <p className="font-accent text-xs tracking-widest uppercase text-peach mb-1">
                     {rule.label}
                   </p>
-                  <p className="font-body text-white/80">{rule.value}</p>
+                  <p className="font-body text-white/80">
+                    {rule.value}
+                    {rule.time && <time dateTime={rule.dateTime}>{rule.time}</time>}
+                  </p>
                 </div>
               </motion.div>
             ))}

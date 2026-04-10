@@ -9,11 +9,12 @@ export default function ContactSection() {
   const t = useTranslations("contactQuick");
 
   return (
-    <section className="py-16 md:py-20 bg-navy text-white">
+    <section aria-labelledby="contact-heading" className="py-16 md:py-20 bg-navy text-white">
       <div className="max-w-4xl mx-auto px-6 text-center">
         <AnimatedText
           text={t("title")}
           as="h2"
+          id="contact-heading"
           className="font-heading text-3xl md:text-4xl text-white font-light"
         />
 

@@ -11,7 +11,7 @@ const collageImages = [
 
 export default function BrandingCollage() {
   return (
-    <section className="py-16 md:py-20 bg-cream">
+    <section aria-label="Galerie de la villa" className="py-16 md:py-20 bg-cream">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-3 grid-rows-auto md:grid-rows-2 gap-3 md:gap-6 h-auto md:h-[700px]">
           {/* Logo */}

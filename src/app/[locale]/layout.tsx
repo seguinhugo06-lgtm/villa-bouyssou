@@ -53,11 +53,17 @@ export default async function LocaleLayout({ children, params }: Props) {
       className={`${cormorant.variable} ${dmSans.variable} ${montserrat.variable}`}
     >
       <body className="bg-cream text-charcoal font-body antialiased">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-navy focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg"
+        >
+          Aller au contenu principal
+        </a>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <CustomCursor />
           <Header />
           <SmoothScroll>
-            <main>{children}</main>
+            <main id="main-content">{children}</main>
             <Footer />
           </SmoothScroll>
         </NextIntlClientProvider>

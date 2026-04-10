@@ -8,6 +8,7 @@ type Props = {
   className?: string;
   delay?: number;
   as?: "h1" | "h2" | "h3" | "h4" | "p" | "span";
+  id?: string;
 };
 
 export default function AnimatedText({
@@ -15,6 +16,7 @@ export default function AnimatedText({
   className = "",
   delay = 0,
   as: Tag = "h2",
+  id,
 }: Props) {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
@@ -29,7 +31,7 @@ export default function AnimatedText({
   }, []);
 
   if (prefersReducedMotion) {
-    return <Tag className={className}>{text}</Tag>;
+    return <Tag id={id} className={className}>{text}</Tag>;
   }
 
   const words = text.split(" ");
@@ -58,7 +60,7 @@ export default function AnimatedText({
   };
 
   return (
-    <Tag className={className}>
+    <Tag id={id} className={className}>
       <motion.span
         initial="hidden"
         whileInView="visible"

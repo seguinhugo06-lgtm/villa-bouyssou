@@ -31,7 +31,7 @@ export default function ExteriorCarousel() {
   const x = useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]);
 
   return (
-    <section ref={containerRef} className="py-16 md:py-24 bg-white overflow-hidden">
+    <section ref={containerRef} aria-label="Galerie extérieure" className="py-16 md:py-24 bg-white overflow-hidden">
       <motion.div style={{ x }} className="flex gap-3 md:gap-6 pl-4 md:pl-6">
         {exteriorImages.map((img, i) => (
           <motion.div

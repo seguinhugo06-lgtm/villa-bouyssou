@@ -111,7 +111,7 @@ export default function PhotosPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="mt-4 font-body text-charcoal/60"
+            className="mt-4 font-body text-charcoal/70"
           >
             {filteredPhotos.length} / {photos.length} photos
           </motion.p>
@@ -134,7 +134,7 @@ export default function PhotosPage() {
                 className={`px-5 py-2.5 rounded-full font-accent text-xs tracking-wider uppercase transition-all duration-300 ${
                   activeCategory === cat
                     ? "bg-navy text-white shadow-md"
-                    : "bg-white text-charcoal/60 hover:bg-navy/5 hover:text-navy"
+                    : "bg-white text-charcoal/70 hover:bg-navy/5 hover:text-navy"
                 }`}
               >
                 {cat}
@@ -288,7 +288,7 @@ export default function PhotosPage() {
             </button>
 
             {/* Counter */}
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 font-accent text-sm text-white/60 tracking-wider">
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 font-accent text-sm text-white/70 tracking-wider">
               {lightboxIndex + 1} / {filteredPhotos.length}
             </div>
           </motion.div>

@@ -9,7 +9,7 @@ export default function WelcomeSection() {
   const t = useTranslations("welcome");
 
   return (
-    <section className="py-16 md:py-20 bg-cream">
+    <section aria-labelledby="welcome-heading" className="py-16 md:py-20 bg-cream">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Portrait */}
@@ -34,6 +34,7 @@ export default function WelcomeSection() {
             <AnimatedText
               text={t("title")}
               as="h2"
+              id="welcome-heading"
               className="font-heading text-3xl md:text-4xl lg:text-5xl text-navy font-light leading-tight"
             />
 
@@ -59,11 +60,11 @@ export default function WelcomeSection() {
                   <span className="text-peach font-heading text-lg">→</span>
                 </div>
                 <div>
-                  <p className="font-accent text-xs text-charcoal/50 uppercase tracking-wider">
+                  <p className="font-accent text-xs text-charcoal/70 uppercase tracking-wider">
                     Check-in
                   </p>
                   <p className="font-body font-medium text-navy">
-                    {t("checkIn")}
+                    <time dateTime="16:00">{t("checkIn")}</time>
                   </p>
                 </div>
               </div>
@@ -72,11 +73,11 @@ export default function WelcomeSection() {
                   <span className="text-peach font-heading text-lg">←</span>
                 </div>
                 <div>
-                  <p className="font-accent text-xs text-charcoal/50 uppercase tracking-wider">
+                  <p className="font-accent text-xs text-charcoal/70 uppercase tracking-wider">
                     Check-out
                   </p>
                   <p className="font-body font-medium text-navy">
-                    {t("checkOut")}
+                    <time dateTime="10:00">{t("checkOut")}</time>
                   </p>
                 </div>
               </div>

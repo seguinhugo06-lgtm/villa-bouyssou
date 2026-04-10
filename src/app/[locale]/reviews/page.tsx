@@ -90,7 +90,7 @@ export default function ReviewsPage() {
               {averageRating.toFixed(1)}
             </p>
             <StarRating rating={Math.round(averageRating)} size={28} animate delay={0.6} />
-            <p className="font-body text-charcoal/50 text-sm mt-1">
+            <p className="font-body text-charcoal/70 text-sm mt-1">
               {reviews.length} avis verifies
             </p>
           </motion.div>
@@ -119,7 +119,7 @@ export default function ReviewsPage() {
                     <p className="font-body font-medium text-charcoal">
                       {review.author}
                     </p>
-                    <p className="text-xs text-charcoal/40 font-body">
+                    <p className="text-xs text-charcoal/70 font-body">
                       {formatReviewDate(review.date)}
                     </p>
                   </div>

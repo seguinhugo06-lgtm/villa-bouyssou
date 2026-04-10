@@ -13,7 +13,7 @@ export default function MarqueeSection() {
   const repeated = `${text}  ·  ${text}  ·  ${text}  ·  ${text}  ·  `;
 
   return (
-    <section className="py-12 bg-peach overflow-hidden">
+    <section aria-label="Bandeau promotionnel" className="py-12 bg-peach overflow-hidden">
       <div className="marquee whitespace-nowrap">
         <span className="inline-block font-heading text-2xl md:text-3xl text-white font-light">
           {repeated}

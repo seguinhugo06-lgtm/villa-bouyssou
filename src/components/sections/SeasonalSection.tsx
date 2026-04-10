@@ -71,7 +71,7 @@ export default function SeasonalSection() {
   const seasonConfig = getSeasonConfig(locale);
 
   return (
-    <section className="py-16 md:py-20 bg-white relative overflow-hidden">
+    <section aria-labelledby="seasonal-heading" className="py-16 md:py-20 bg-white relative overflow-hidden">
       <div className="max-w-4xl mx-auto px-6 text-center">
         {/* Animated badge */}
         <motion.div
@@ -79,7 +79,7 @@ export default function SeasonalSection() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ type: "spring", stiffness: 200 }}
-          className="inline-flex items-center gap-2 bg-terracotta/10 text-terracotta px-5 py-2 rounded-full mb-8"
+          className="inline-flex items-center gap-2 bg-terracotta/10 text-terracotta-text px-5 py-2 rounded-full mb-8"
         >
           <motion.span
             animate={{ scale: [1, 1.2, 1] }}
@@ -94,6 +94,7 @@ export default function SeasonalSection() {
         <AnimatedText
           text={seasonConfig.title || t("title")}
           as="h2"
+          id="seasonal-heading"
           className="font-heading text-3xl md:text-4xl lg:text-5xl text-navy font-light leading-tight"
         />
 

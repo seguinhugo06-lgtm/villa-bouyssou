@@ -12,11 +12,12 @@ export default function EventsSection() {
   const locale = pathname.split("/")[1] || "fr";
 
   return (
-    <section className="py-16 md:py-20 bg-forest text-white">
+    <section aria-labelledby="events-heading" className="py-16 md:py-20 bg-forest text-white">
       <div className="max-w-4xl mx-auto px-6 text-center">
         <AnimatedText
           text={t("title")}
           as="h2"
+          id="events-heading"
           className="font-heading text-3xl md:text-4xl lg:text-5xl font-light leading-tight"
         />
         <motion.p

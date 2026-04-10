@@ -49,7 +49,7 @@ function PriceCell({ value, start }: { value: number; start: boolean }) {
   return (
     <span className="font-heading text-2xl md:text-3xl text-navy font-light">
       {animated}
-      <span className="text-sm text-charcoal/40 ml-0.5">EUR</span>
+      <span className="text-sm text-charcoal/70 ml-0.5">EUR</span>
     </span>
   );
 }
@@ -151,7 +151,7 @@ export default function PricesPage() {
                 className={`px-6 py-2.5 rounded-full text-sm font-accent uppercase tracking-wider transition-all duration-300 ${
                   viewMode === opt.key
                     ? "bg-navy text-white shadow-md"
-                    : "text-charcoal/50 hover:text-charcoal"
+                    : "text-charcoal/70 hover:text-charcoal"
                 }`}
               >
                 {opt.label}
@@ -165,19 +165,19 @@ export default function PricesPage() {
           <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
             {/* Header row */}
             <div className="grid grid-cols-5 gap-4 px-8 py-5 bg-navy/5 border-b border-navy/10">
-              <span className="font-accent text-xs uppercase tracking-widest text-charcoal/50">
+              <span className="font-accent text-xs uppercase tracking-widest text-charcoal/70">
                 Saison
               </span>
-              <span className="font-accent text-xs uppercase tracking-widest text-charcoal/50">
+              <span className="font-accent text-xs uppercase tracking-widest text-charcoal/70">
                 Periode
               </span>
-              <span className="font-accent text-xs uppercase tracking-widest text-charcoal/50 text-right">
+              <span className="font-accent text-xs uppercase tracking-widest text-charcoal/70 text-right">
                 Nuitee
               </span>
-              <span className="font-accent text-xs uppercase tracking-widest text-charcoal/50 text-right">
+              <span className="font-accent text-xs uppercase tracking-widest text-charcoal/70 text-right">
                 Semaine
               </span>
-              <span className="font-accent text-xs uppercase tracking-widest text-charcoal/50 text-right">
+              <span className="font-accent text-xs uppercase tracking-widest text-charcoal/70 text-right">
                 Mois
               </span>
             </div>
@@ -198,7 +198,7 @@ export default function PricesPage() {
                 <span className="font-heading text-lg text-navy">
                   {SEASON_NAMES[season.nameKey] || season.nameKey}
                 </span>
-                <span className="font-body text-sm text-charcoal/60">
+                <span className="font-body text-sm text-charcoal/70">
                   {season.period}
                 </span>
                 <span className="text-right">
@@ -229,24 +229,24 @@ export default function PricesPage() {
               <h3 className="font-heading text-xl text-navy mb-1">
                 {SEASON_NAMES[season.nameKey] || season.nameKey}
               </h3>
-              <p className="font-body text-sm text-charcoal/50 mb-4">
+              <p className="font-body text-sm text-charcoal/70 mb-4">
                 {season.period}
               </p>
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
-                  <span className="font-accent text-xs uppercase tracking-wider text-charcoal/40">
+                  <span className="font-accent text-xs uppercase tracking-wider text-charcoal/70">
                     Nuitee
                   </span>
                   <PriceCell value={season.nightly} start={hasAnimated} />
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="font-accent text-xs uppercase tracking-wider text-charcoal/40">
+                  <span className="font-accent text-xs uppercase tracking-wider text-charcoal/70">
                     Semaine
                   </span>
                   <PriceCell value={season.weekly} start={hasAnimated} />
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="font-accent text-xs uppercase tracking-wider text-charcoal/40">
+                  <span className="font-accent text-xs uppercase tracking-wider text-charcoal/70">
                     Mois
                   </span>
                   <PriceCell value={season.monthly} start={hasAnimated} />
@@ -265,12 +265,12 @@ export default function PricesPage() {
           className="mt-8 text-center"
         >
           <div className="inline-flex items-center gap-3 bg-white rounded-full px-8 py-4 shadow-sm">
-            <span className="font-accent text-xs uppercase tracking-widest text-charcoal/50">
+            <span className="font-accent text-xs uppercase tracking-widest text-charcoal/70">
               Frais de menage
             </span>
             <span className="font-heading text-2xl text-navy font-light">
               {cleaningFee}
-              <span className="text-sm text-charcoal/40 ml-0.5">EUR</span>
+              <span className="text-sm text-charcoal/70 ml-0.5">EUR</span>
             </span>
           </div>
         </motion.div>
@@ -292,7 +292,7 @@ export default function PricesPage() {
               <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-peach/15 flex items-center justify-center">
                 <span className="font-heading text-xl text-peach">$</span>
               </div>
-              <h3 className="font-accent text-xs uppercase tracking-widest text-charcoal/50 mb-3">
+              <h3 className="font-accent text-xs uppercase tracking-widest text-charcoal/70 mb-3">
                 Paiement
               </h3>
               <p className="font-body text-sm text-charcoal/70 leading-relaxed">
@@ -307,7 +307,7 @@ export default function PricesPage() {
               <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-forest/15 flex items-center justify-center">
                 <span className="font-heading text-xl text-forest">%</span>
               </div>
-              <h3 className="font-accent text-xs uppercase tracking-widest text-charcoal/50 mb-3">
+              <h3 className="font-accent text-xs uppercase tracking-widest text-charcoal/70 mb-3">
                 Annulation
               </h3>
               <p className="font-body text-sm text-charcoal/70 leading-relaxed">
@@ -322,7 +322,7 @@ export default function PricesPage() {
               <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-navy/10 flex items-center justify-center">
                 <span className="font-heading text-xl text-navy">D</span>
               </div>
-              <h3 className="font-accent text-xs uppercase tracking-widest text-charcoal/50 mb-3">
+              <h3 className="font-accent text-xs uppercase tracking-widest text-charcoal/70 mb-3">
                 Depot de garantie
               </h3>
               <p className="font-body text-sm text-charcoal/70 leading-relaxed">

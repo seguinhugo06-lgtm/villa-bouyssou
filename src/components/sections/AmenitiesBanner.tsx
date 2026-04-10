@@ -32,7 +32,7 @@ export default function AmenitiesBanner() {
   const t = useTranslations("amenities");
 
   return (
-    <section className="bg-forest py-14 md:py-24">
+    <section aria-label="Équipements et services" className="bg-forest py-14 md:py-24">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-6">
           {amenityIcons.map(({ key, Icon }, i) => (
