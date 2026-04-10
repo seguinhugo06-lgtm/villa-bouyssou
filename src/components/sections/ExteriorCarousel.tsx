@@ -32,7 +32,7 @@ export default function ExteriorCarousel() {
 
   return (
     <section ref={containerRef} className="py-16 md:py-24 bg-white overflow-hidden">
-      <motion.div style={{ x }} className="flex gap-6 pl-6">
+      <motion.div style={{ x }} className="flex gap-3 md:gap-6 pl-4 md:pl-6">
         {exteriorImages.map((img, i) => (
           <motion.div
             key={i}
@@ -40,7 +40,7 @@ export default function ExteriorCarousel() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.1, duration: 0.8 }}
-            className="relative min-w-[300px] md:min-w-[400px] lg:min-w-[500px] aspect-[3/4] rounded-2xl overflow-hidden flex-shrink-0"
+            className="relative min-w-[260px] md:min-w-[400px] lg:min-w-[500px] aspect-[3/4] rounded-xl md:rounded-2xl overflow-hidden flex-shrink-0"
           >
             <Image
               src={img.src}

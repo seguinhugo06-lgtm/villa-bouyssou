@@ -9,9 +9,9 @@ export default function WelcomeSection() {
   const t = useTranslations("welcome");
 
   return (
-    <section className="py-24 md:py-32 bg-cream">
+    <section className="py-16 md:py-20 bg-cream">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Portrait */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}

@@ -12,7 +12,7 @@ export default function EventsSection() {
   const locale = pathname.split("/")[1] || "fr";
 
   return (
-    <section className="py-24 md:py-32 bg-forest text-white">
+    <section className="py-16 md:py-20 bg-forest text-white">
       <div className="max-w-4xl mx-auto px-6 text-center">
         <AnimatedText
           text={t("title")}

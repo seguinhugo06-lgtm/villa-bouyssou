@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 type Props = {
@@ -15,6 +16,22 @@ export default function AnimatedText({
   delay = 0,
   as: Tag = "h2",
 }: Props) {
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    const handler = (e: MediaQueryListEvent) =>
+      setPrefersReducedMotion(e.matches);
+    mediaQuery.addEventListener("change", handler);
+    return () => mediaQuery.removeEventListener("change", handler);
+  }, []);
+
+  if (prefersReducedMotion) {
+    return <Tag className={className}>{text}</Tag>;
+  }
+
   const words = text.split(" ");
 
   const container = {
@@ -47,16 +64,19 @@ export default function AnimatedText({
         whileInView="visible"
         viewport={{ once: true, margin: "-50px" }}
         variants={container}
-        className="flex flex-wrap"
+        style={{ display: "inline-flex", flexWrap: "wrap" }}
       >
         {words.map((word, index) => (
-          <motion.span
-            key={index}
-            variants={child}
-            className="mr-[0.3em] inline-block"
-          >
-            {word}
-          </motion.span>
+          <span key={index}>
+            <motion.span
+              variants={child}
+              className="inline-block will-change-transform"
+              style={{ marginRight: "0.25em", willChange: "transform, opacity" }}
+            >
+              {word}
+            </motion.span>
+            {index < words.length - 1 ? " " : null}
+          </span>
         ))}
       </motion.span>
     </Tag>

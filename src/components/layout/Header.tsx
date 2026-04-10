@@ -92,7 +92,7 @@ export default function Header() {
           {/* Book CTA */}
           <Link
             href={`/${locale}/availability`}
-            className="hidden lg:flex items-center gap-2 bg-peach text-white px-6 py-2.5 rounded-full font-accent text-sm font-medium hover:bg-peach-dark transition-all duration-300 hover:scale-[1.02]"
+            className="hidden lg:flex items-center gap-2 bg-peach text-white px-6 py-2.5 rounded-full font-accent text-sm font-medium hover:bg-peach-dark transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-peach/30"
           >
             {t("book")}
           </Link>

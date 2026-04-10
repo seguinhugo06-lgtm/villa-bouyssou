@@ -125,6 +125,50 @@ html.lenis body {
   border-radius: 3px;
 }
 
+/* Hero date input styling */
+.hero-date-wrapper {
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-date-wrapper:focus-within {
+  border-color: var(--color-peach);
+  box-shadow: 0 0 0 3px rgba(232, 168, 124, 0.2);
+}
+
+.hero-date-input {
+  width: 100%;
+  background: transparent;
+  color: white;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color-scheme: dark;
+}
+
+/* Hide native calendar icon and style */
+.hero-date-input::-webkit-calendar-picker-indicator {
+  filter: invert(1) brightness(0.8);
+  opacity: 0.6;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.hero-date-input::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+.hero-date-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
 /* Selection */
 ::selection {
   background-color: var(--color-peach);

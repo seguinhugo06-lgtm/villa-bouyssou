@@ -3,16 +3,27 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 import AnimatedText from "@/components/ui/AnimatedText";
-import { prices } from "@/data/prices";
+import { prices, cleaningFee } from "@/data/prices";
 
 type ViewMode = "nightly" | "weekly" | "monthly";
 
 function useCountUp(target: number, duration: number = 1200, start: boolean = false) {
   const [value, setValue] = useState(0);
+  const prevTarget = useRef(target);
 
   useEffect(() => {
-    if (!start) return;
+    if (!start) {
+      setValue(0);
+      return;
+    }
+
+    // Reset to 0 when target changes
+    setValue(0);
+    prevTarget.current = target;
+
     let startTime: number | null = null;
     let rafId: number;
 
@@ -44,7 +55,7 @@ function PriceCell({ value, start }: { value: number; start: boolean }) {
 }
 
 const SEASON_NAMES: Record<string, string> = {
-  "prices.default": "Standard",
+  "prices.default": "Basse saison",
   "prices.christmas": "Noel / Nouvel An",
   "prices.mid": "Moyenne saison",
   "prices.high": "Haute saison",
@@ -65,6 +76,8 @@ const rowVariants = {
 
 export default function PricesPage() {
   const t = useTranslations();
+  const pathname = usePathname();
+  const locale = pathname.split("/")[1] || "fr";
   const [viewMode, setViewMode] = useState<ViewMode>("nightly");
   const [hasAnimated, setHasAnimated] = useState(false);
   const tableRef = useRef<HTMLDivElement>(null);
@@ -76,16 +89,24 @@ export default function PricesPage() {
           setHasAnimated(true);
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.1 }
     );
     if (tableRef.current) observer.observe(tableRef.current);
     return () => observer.disconnect();
   }, [hasAnimated]);
 
-  function getPriceForMode(season: typeof prices[0]) {
+  // Also trigger animation on mount after a short delay as fallback
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!hasAnimated) setHasAnimated(true);
+    }, 800);
+    return () => clearTimeout(timer);
+  }, [hasAnimated]);
+
+  function getPriceForMode(season: (typeof prices)[0]) {
     switch (viewMode) {
       case "nightly":
-        return season.nightlyMin;
+        return season.nightly;
       case "weekly":
         return season.weekly;
       case "monthly":
@@ -181,7 +202,7 @@ export default function PricesPage() {
                   {season.period}
                 </span>
                 <span className="text-right">
-                  <PriceCell value={season.nightlyMin} start={hasAnimated} />
+                  <PriceCell value={season.nightly} start={hasAnimated} />
                 </span>
                 <span className="text-right">
                   <PriceCell value={season.weekly} start={hasAnimated} />
@@ -202,8 +223,7 @@ export default function PricesPage() {
               custom={i}
               variants={rowVariants}
               initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
+              animate="visible"
               className="bg-white rounded-2xl p-6 shadow-sm"
             >
               <h3 className="font-heading text-xl text-navy mb-1">
@@ -217,7 +237,7 @@ export default function PricesPage() {
                   <span className="font-accent text-xs uppercase tracking-wider text-charcoal/40">
                     Nuitee
                   </span>
-                  <PriceCell value={season.nightlyMin} start={hasAnimated} />
+                  <PriceCell value={season.nightly} start={hasAnimated} />
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="font-accent text-xs uppercase tracking-wider text-charcoal/40">
@@ -235,6 +255,25 @@ export default function PricesPage() {
             </motion.div>
           ))}
         </div>
+
+        {/* Cleaning fee */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="mt-8 text-center"
+        >
+          <div className="inline-flex items-center gap-3 bg-white rounded-full px-8 py-4 shadow-sm">
+            <span className="font-accent text-xs uppercase tracking-widest text-charcoal/50">
+              Frais de menage
+            </span>
+            <span className="font-heading text-2xl text-navy font-light">
+              {cleaningFee}
+              <span className="text-sm text-charcoal/40 ml-0.5">EUR</span>
+            </span>
+          </div>
+        </motion.div>
 
         {/* Booking policies */}
         <motion.div
@@ -301,14 +340,12 @@ export default function PricesPage() {
           transition={{ delay: 0.3, duration: 0.6 }}
           className="text-center mt-16"
         >
-          <a
-            href="https://checkout.lodgify.com/en/lavillabouyssou/509517/reservation?currency=EUR"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href={`/${locale}/availability`}
             className="inline-block bg-terracotta hover:bg-terracotta/90 text-white font-accent text-sm uppercase tracking-widest px-10 py-4 rounded-full transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
           >
             Reserver maintenant
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>

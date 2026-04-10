@@ -24,6 +24,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://villa-bouyssou.vercel.app"),
   title: {
     default: "La Villa Bouyssou | Villa contemporaine à Sarlat",
     template: "%s | La Villa Bouyssou",
@@ -38,11 +39,27 @@ export const metadata: Metadata = {
     "villa contemporaine",
     "périgord noir",
   ],
+  alternates: {
+    canonical: "https://villa-bouyssou.vercel.app",
+  },
+  manifest: "/manifest.json",
   openGraph: {
     type: "website",
     locale: "fr_FR",
     alternateLocale: "en_GB",
     siteName: "La Villa Bouyssou",
+    images: [
+      {
+        url: "/images/hero/terrasse-piscine.jpg",
+        width: 1200,
+        height: 630,
+        alt: "La Villa Bouyssou - Terrasse et piscine",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/images/hero/terrasse-piscine.jpg"],
   },
 };
 

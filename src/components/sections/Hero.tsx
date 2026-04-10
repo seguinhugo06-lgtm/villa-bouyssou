@@ -42,9 +42,9 @@ export default function Hero() {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1.5, ease: "easeInOut" }}
-          className="absolute inset-0"
+          className="absolute inset-0 will-change-transform"
         >
-          <div className="absolute inset-0 ken-burns">
+          <div className="absolute inset-0 ken-burns will-change-transform">
             <Image
               src={heroImages[currentImage].src}
               alt={heroImages[currentImage].alt}
@@ -57,8 +57,8 @@ export default function Hero() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60 z-10" />
+      {/* Gradient overlay - lighter on mobile for better image visibility */}
+      <div className="absolute inset-0 bg-gradient-to-b from-charcoal/50 via-transparent to-charcoal/70 z-10" />
 
       {/* Content */}
       <div className="relative z-20 h-full flex flex-col items-center justify-center px-6 text-center text-white">
@@ -66,7 +66,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] }}
-          className="font-heading text-4xl md:text-5xl lg:text-7xl font-light max-w-4xl leading-tight"
+          className="font-heading text-3xl md:text-5xl lg:text-6xl font-light max-w-4xl leading-tight"
         >
           {t("title")}
         </motion.h1>
@@ -85,31 +85,35 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.2 }}
-          className="mt-12 bg-white/10 backdrop-blur-lg rounded-2xl p-4 md:p-6 flex flex-col md:flex-row items-center gap-4"
+          className="mt-12 w-full max-w-md md:max-w-none md:w-auto bg-white/10 backdrop-blur-lg rounded-2xl p-4 md:p-6 flex flex-col md:flex-row items-stretch md:items-center gap-4"
         >
-          <div className="flex flex-col">
+          <div className="flex flex-col w-full md:w-auto">
             <label className="text-xs text-white/60 font-accent uppercase tracking-wider mb-1">
               {t("checkIn")}
             </label>
-            <input
-              type="date"
-              className="bg-white/10 border border-white/20 rounded-lg px-4 py-2 text-white font-body text-sm focus:outline-none focus:border-peach transition-colors"
-            />
+            <div className="hero-date-wrapper">
+              <input
+                type="date"
+                className="hero-date-input w-full"
+              />
+            </div>
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col w-full md:w-auto">
             <label className="text-xs text-white/60 font-accent uppercase tracking-wider mb-1">
               {t("checkOut")}
             </label>
-            <input
-              type="date"
-              className="bg-white/10 border border-white/20 rounded-lg px-4 py-2 text-white font-body text-sm focus:outline-none focus:border-peach transition-colors"
-            />
+            <div className="hero-date-wrapper">
+              <input
+                type="date"
+                className="hero-date-input w-full"
+              />
+            </div>
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col w-full md:w-auto">
             <label className="text-xs text-white/60 font-accent uppercase tracking-wider mb-1">
               {t("guests")}
             </label>
-            <select className="bg-white/10 border border-white/20 rounded-lg px-4 py-2 text-white font-body text-sm focus:outline-none focus:border-peach transition-colors">
+            <select className="bg-white/10 border border-white/20 rounded-lg px-4 py-2 text-white font-body text-sm focus:outline-none focus:border-peach transition-colors w-full md:w-auto">
               {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
                 <option key={n} value={n} className="text-charcoal">
                   {n}

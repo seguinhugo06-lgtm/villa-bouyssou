@@ -1,9 +1,10 @@
 "use client";
 
+import { useState, useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import AnimatedText from "@/components/ui/AnimatedText";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import Button from "@/components/ui/Button";
@@ -21,28 +22,49 @@ export default function PresentationSection() {
   const t = useTranslations("presentation");
   const pathname = usePathname();
   const locale = pathname.split("/")[1] || "fr";
+  const [isMobile, setIsMobile] = useState(false);
+  const imageRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: imageRef,
+    offset: ["start end", "end start"],
+  });
+  const parallaxY = useTransform(scrollYProgress, [0, 1], [-20, 20]);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 1024);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   return (
-    <section className="py-24 md:py-32 bg-cream">
+    <section className="py-16 md:py-20 bg-cream">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Image with mask reveal */}
           <AnimatedSection direction="left">
-            <motion.div
-              initial={{ clipPath: "inset(0 100% 0 0)" }}
-              whileInView={{ clipPath: "inset(0 0% 0 0)" }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] }}
-              className="relative aspect-[4/5] rounded-2xl overflow-hidden"
-            >
-              <Image
-                src="/images/patio-bleu.png"
-                alt="Patio bleu avec chaise suspendue"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-            </motion.div>
+            <div ref={imageRef}>
+              <motion.div
+                initial={isMobile ? { opacity: 0 } : { clipPath: "inset(0 100% 0 0)" }}
+                whileInView={isMobile ? { opacity: 1 } : { clipPath: "inset(0 0% 0 0)" }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] }}
+                className="relative aspect-[4/3] lg:aspect-[4/5] rounded-2xl overflow-hidden"
+              >
+                <motion.div
+                  style={{ y: parallaxY }}
+                  className="absolute inset-0 will-change-transform"
+                >
+                  <Image
+                    src="/images/patio-bleu.png"
+                    alt="Patio bleu avec chaise suspendue"
+                    fill
+                    className="object-cover scale-110"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                </motion.div>
+              </motion.div>
+            </div>
           </AnimatedSection>
 
           {/* Text content */}

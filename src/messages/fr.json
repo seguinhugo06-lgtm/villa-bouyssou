@@ -14,7 +14,7 @@
   },
   "hero": {
     "title": "Louer une villa contemporaine à deux pas du centre historique de Sarlat.",
-    "subtitle": "Louer une villa contemporaine dans une cité médiévale à Sarlat-la-Canéda.",
+    "subtitle": "3 chambres · Piscine chauffée · Jusqu'à 9 voyageurs",
     "checkIn": "Arrivée",
     "checkOut": "Départ",
     "guests": "Voyageurs",
@@ -75,19 +75,22 @@
         "name": "Bleu Nuit",
         "capacity": "2 à 3 voyageurs",
         "bedSize": "Lit king-size + lit simple",
-        "features": "Salle de bain privée avec douche à l'italienne"
+        "features": "Salle de bain privée avec douche à l'italienne",
+        "description": "Ambiance élégante et apaisante avec ses tons bleu profond. Lit double king-size, vue sur le jardin."
       },
       "terracotta": {
         "name": "Terracotta",
         "capacity": "2 à 3 voyageurs",
         "bedSize": "Lit king-size + lit simple",
-        "features": "Salle de bain privée avec douche à l'italienne"
+        "features": "Salle de bain privée avec douche à l'italienne",
+        "description": "Chaleureuse et lumineuse, teintes terre cuite et matériaux naturels. Lit double queen-size, salle de bain attenante."
       },
       "ocre": {
         "name": "Ocre",
         "capacity": "2 à 3 voyageurs",
         "bedSize": "Lit king-size + lit simple",
-        "features": "Salle de bain privée avec douche à l'italienne"
+        "features": "Salle de bain privée avec douche à l'italienne",
+        "description": "Douce et raffinée, nuances ocre et dorées. Deux lits simples convertibles, idéale pour les enfants."
       }
     }
   },
@@ -130,6 +133,36 @@
     "title": "Nous contacter",
     "email": "lavillabouyssou@gmail.com",
     "phone": "+33 6 87 40 20 93"
+  },
+  "contact": {
+    "aboutHost": "À propos de l'hôte",
+    "hostSubtitle": "Votre hôte à La Villa Bouyssou",
+    "formTitle": "Nous contacter",
+    "email": "Email",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "guestsLabel": "Nombre d'invités",
+    "guest": "invité",
+    "guests": "invités",
+    "phone": "Téléphone",
+    "checkIn": "Date d'arrivée",
+    "checkOut": "Date de départ",
+    "comment": "Commentaire",
+    "sending": "Envoi...",
+    "sent": "Envoyé !",
+    "send": "Envoyer"
+  },
+  "travelGuide": {
+    "title": "Guide de voyage du Périgord",
+    "subtitle": "Découvrez la région, profitez des bonnes adresses !",
+    "description": "Le Périgord Noir regorge de trésors : villages classés parmi les plus beaux de France, châteaux médiévaux chargés d'histoire, grottes préhistoriques fascinantes et jardins d'exception. Laissez-vous guider à travers ces merveilles à découvrir depuis La Villa Bouyssou.",
+    "villages": "Villages",
+    "castles": "Châteaux",
+    "caves": "Grottes & Gouffres",
+    "gardens": "Jardins",
+    "restaurants": "Restaurants",
+    "kidsActivities": "Activités Enfants",
+    "comingSoon": "Bientôt"
   },
   "footer": {
     "rights": "© 2026 La Villa Bouyssou. Tous droits réservés.",

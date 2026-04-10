@@ -98,13 +98,13 @@ export default function Footer() {
             </h4>
             <div className="flex flex-col gap-3 font-body text-sm text-white/70">
               <Link
-                href="#"
+                href={`/${locale}/mentions-legales`}
                 className="hover:text-peach transition-colors duration-300"
               >
                 {t("legalNotice")}
               </Link>
               <Link
-                href="#"
+                href={`/${locale}/politique-de-confidentialite`}
                 className="hover:text-peach transition-colors duration-300"
               >
                 {t("privacyPolicy")}

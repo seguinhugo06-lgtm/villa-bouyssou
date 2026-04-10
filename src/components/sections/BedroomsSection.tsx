@@ -27,7 +27,7 @@ export default function BedroomsSection() {
   const t = useTranslations("bedrooms");
 
   return (
-    <section className="py-24 md:py-32 bg-cream">
+    <section className="py-16 md:py-20 bg-cream">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <AnimatedText
@@ -46,7 +46,7 @@ export default function BedroomsSection() {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {bedrooms.map((room, i) => (
             <motion.div
               key={room.id}
@@ -55,7 +55,7 @@ export default function BedroomsSection() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.15, duration: 0.7 }}
               whileHover={{ y: -8 }}
-              className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-500"
+              className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
             >
               {/* Image */}
               <div className="relative aspect-[4/3] overflow-hidden">
@@ -88,6 +88,9 @@ export default function BedroomsSection() {
                 </p>
                 <p className="font-body text-sm text-charcoal/70">
                   {t(`rooms.${room.id}.features`)}
+                </p>
+                <p className="font-body text-sm text-charcoal/80 mt-3 italic">
+                  {t(`rooms.${room.id}.description`)}
                 </p>
               </div>
             </motion.div>

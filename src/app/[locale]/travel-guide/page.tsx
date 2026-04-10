@@ -1,50 +1,52 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import { Castle, Trees, Mountain, Flower2, UtensilsCrossed, Baby } from 'lucide-react';
 
 const categories = [
   {
-    title: 'Villages',
+    titleKey: 'villages' as const,
     href: '/travel-guide/villages',
     image: '/images/guide/villages.jpg',
     icon: Trees,
     comingSoon: false,
   },
   {
-    title: 'Chateaux',
+    titleKey: 'castles' as const,
     href: '/travel-guide/castles',
-    image: '/images/guide/castles.jpg',
+    image: '/images/guide/chateaux.jpg',
     icon: Castle,
     comingSoon: false,
   },
   {
-    title: 'Grottes & Gouffres',
+    titleKey: 'caves' as const,
     href: '/travel-guide/caves',
-    image: '/images/guide/caves.jpg',
+    image: '/images/guide/grottes.jpg',
     icon: Mountain,
     comingSoon: false,
   },
   {
-    title: 'Jardins',
+    titleKey: 'gardens' as const,
     href: '/travel-guide/gardens',
-    image: '/images/guide/gardens.jpg',
+    image: '/images/guide/jardins.jpg',
     icon: Flower2,
     comingSoon: false,
   },
   {
-    title: 'Restaurants',
+    titleKey: 'restaurants' as const,
     href: '#',
     image: '/images/guide/restaurants.jpg',
     icon: UtensilsCrossed,
     comingSoon: true,
   },
   {
-    title: 'Activites Enfants',
+    titleKey: 'kidsActivities' as const,
     href: '#',
-    image: '/images/guide/kids.jpg',
+    image: '/images/guide/activites.jpg',
     icon: Baby,
     comingSoon: true,
   },
@@ -69,6 +71,7 @@ const cardVariants = {
 };
 
 export default function TravelGuidePage() {
+  const t = useTranslations('travelGuide');
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
@@ -82,7 +85,7 @@ export default function TravelGuidePage() {
             transition={{ duration: 0.6 }}
             className="font-heading text-4xl md:text-5xl lg:text-6xl text-cream mb-4"
           >
-            Guide de voyage du Perigord
+            {t('title')}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
@@ -90,7 +93,7 @@ export default function TravelGuidePage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="font-accent text-lg md:text-xl text-peach mb-8"
           >
-            Decouvrez la region, profitez des bonnes adresses !
+            {t('subtitle')}
           </motion.p>
           <motion.p
             initial={{ opacity: 0 }}
@@ -98,10 +101,7 @@ export default function TravelGuidePage() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="font-body text-cream/80 max-w-2xl mx-auto leading-relaxed"
           >
-            Le Perigord Noir regorge de tresors : villages classes parmi les plus beaux de France,
-            chateaux medievaux charges d&apos;histoire, grottes prehistoriques fascinantes et jardins
-            d&apos;exception. Laissez-vous guider a travers ces merveilles a decouvrir
-            depuis La Villa Bouyssou.
+            {t('description')}
           </motion.p>
         </div>
       </section>
@@ -119,7 +119,7 @@ export default function TravelGuidePage() {
             const Icon = cat.icon;
             return (
               <motion.div
-                key={cat.title}
+                key={cat.titleKey}
                 variants={cardVariants}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
@@ -142,26 +142,32 @@ export default function TravelGuidePage() {
                     transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                     className="relative overflow-hidden rounded-2xl shadow-lg group"
                   >
-                    {/* Image placeholder area */}
-                    <div className="aspect-[4/3] bg-gradient-to-br from-navy/10 to-forest/20 flex items-center justify-center">
-                      <Icon
-                        className={`w-16 h-16 ${
-                          cat.comingSoon ? 'text-charcoal/20' : 'text-navy/30 group-hover:text-peach/60'
-                        } transition-colors duration-300`}
+                    {/* Image */}
+                    <div className="aspect-[4/3] relative">
+                      <Image
+                        src={cat.image}
+                        alt={t(cat.titleKey)}
+                        fill
+                        className={`object-cover transition-transform duration-500 ${
+                          cat.comingSoon
+                            ? 'grayscale opacity-60'
+                            : 'group-hover:scale-105'
+                        }`}
+                        sizes="(max-width: 768px) 50vw, 33vw"
                       />
                     </div>
 
                     {/* Title overlay */}
                     <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-charcoal/90 via-charcoal/50 to-transparent p-4 pt-12">
                       <h3 className="font-heading text-xl md:text-2xl text-cream">
-                        {cat.title}
+                        {t(cat.titleKey)}
                       </h3>
                     </div>
 
                     {/* Coming soon badge */}
                     {cat.comingSoon && (
                       <div className="absolute top-3 right-3 bg-peach text-white font-accent text-xs px-3 py-1 rounded-full">
-                        Bientot
+                        {t('comingSoon')}
                       </div>
                     )}
                   </motion.div>

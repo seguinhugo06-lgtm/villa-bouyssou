@@ -17,5 +17,7 @@ export const routing = defineRouting({
     '/travel-guide/caves': '/travel-guide/caves',
     '/travel-guide/gardens': '/travel-guide/gardens',
     '/contact': '/contact',
+    '/mentions-legales': '/mentions-legales',
+    '/politique-de-confidentialite': '/politique-de-confidentialite',
   },
 });

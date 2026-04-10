@@ -13,13 +13,13 @@ export default function LocationSection() {
   const locale = pathname.split("/")[1] || "fr";
 
   return (
-    <section className="py-24 md:py-32 bg-navy text-white relative overflow-hidden">
+    <section className="py-16 md:py-20 bg-navy text-white relative overflow-hidden">
       {/* Decorative circles */}
       <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full border border-white/5" />
       <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full border border-white/5" />
 
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           <div>
             <motion.div
               initial={{ opacity: 0, scale: 0 }}

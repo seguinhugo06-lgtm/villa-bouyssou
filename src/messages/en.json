@@ -14,7 +14,7 @@
   },
   "hero": {
     "title": "To rent a contemporary villa near the historic city center of Sarlat.",
-    "subtitle": "To rent a contemporary villa in a medieval town in Sarlat-la-Canéda.",
+    "subtitle": "3 bedrooms · Heated pool · Up to 9 guests",
     "checkIn": "Check-in",
     "checkOut": "Check-out",
     "guests": "Guests",
@@ -75,19 +75,22 @@
         "name": "Bleu Nuit",
         "capacity": "2 to 3 guests",
         "bedSize": "King-size bed + single bed",
-        "features": "Private bathroom with walk-in shower"
+        "features": "Private bathroom with walk-in shower",
+        "description": "Elegant and soothing ambiance with deep blue tones. King-size bed, garden view."
       },
       "terracotta": {
         "name": "Terracotta",
         "capacity": "2 to 3 guests",
         "bedSize": "King-size bed + single bed",
-        "features": "Private bathroom with walk-in shower"
+        "features": "Private bathroom with walk-in shower",
+        "description": "Warm and bright, terracotta hues and natural materials. Queen-size bed, en-suite bathroom."
       },
       "ocre": {
         "name": "Ocre",
         "capacity": "2 to 3 guests",
         "bedSize": "King-size bed + single bed",
-        "features": "Private bathroom with walk-in shower"
+        "features": "Private bathroom with walk-in shower",
+        "description": "Soft and refined, ochre and golden shades. Two convertible single beds, ideal for children."
       }
     }
   },
@@ -130,6 +133,36 @@
     "title": "Get in Touch",
     "email": "lavillabouyssou@gmail.com",
     "phone": "+33 6 87 40 20 93"
+  },
+  "contact": {
+    "aboutHost": "About the Host",
+    "hostSubtitle": "Your host at La Villa Bouyssou",
+    "formTitle": "Get in Touch",
+    "email": "Email",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "guestsLabel": "Number of Guests",
+    "guest": "guest",
+    "guests": "guests",
+    "phone": "Phone",
+    "checkIn": "Check-in Date",
+    "checkOut": "Check-out Date",
+    "comment": "Comment",
+    "sending": "Sending...",
+    "sent": "Sent!",
+    "send": "Send"
+  },
+  "travelGuide": {
+    "title": "Périgord Travel Guide",
+    "subtitle": "Discover the region, enjoy the best addresses!",
+    "description": "The Périgord Noir is full of treasures: villages ranked among the most beautiful in France, medieval castles steeped in history, fascinating prehistoric caves, and exceptional gardens. Let us guide you through these wonders to discover from La Villa Bouyssou.",
+    "villages": "Villages",
+    "castles": "Castles",
+    "caves": "Caves & Chasms",
+    "gardens": "Gardens",
+    "restaurants": "Restaurants",
+    "kidsActivities": "Kids Activities",
+    "comingSoon": "Coming Soon"
   },
   "footer": {
     "rights": "© 2026 La Villa Bouyssou. All rights reserved.",

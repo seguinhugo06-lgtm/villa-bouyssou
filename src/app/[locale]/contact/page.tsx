@@ -69,21 +69,8 @@ function FloatingInput({
   );
 }
 
-const fieldVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: 0.1 * i,
-      duration: 0.5,
-      ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number],
-    },
-  }),
-};
-
 export default function ContactPage() {
-  const t = useTranslations();
+  const t = useTranslations("contact");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
@@ -96,13 +83,22 @@ export default function ContactPage() {
 
   async function onSubmit(data: FormData) {
     setIsSubmitting(true);
-    // eslint-disable-next-line no-console
-    console.log("Contact form data:", data);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setSubmitted(true);
-    reset();
-    setTimeout(() => setSubmitted(false), 4000);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error("Failed to send");
+      setSubmitted(true);
+      reset();
+      setTimeout(() => setSubmitted(false), 4000);
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error("Contact form error:", err);
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -111,7 +107,7 @@ export default function ContactPage() {
         {/* Header */}
         <div className="text-center mb-16">
           <AnimatedText
-            text="A propos de l'hote"
+            text={t("aboutHost")}
             as="h1"
             className="font-heading text-4xl md:text-5xl lg:text-6xl text-navy font-light"
           />
@@ -135,7 +131,7 @@ export default function ContactPage() {
                 Elina Bouyssou
               </h2>
               <p className="font-body text-charcoal/60 text-sm mb-6">
-                Votre hote a La Villa Bouyssou
+                {t("hostSubtitle")}
               </p>
 
               <div className="flex flex-col sm:flex-row items-center gap-4">
@@ -171,13 +167,13 @@ export default function ContactPage() {
           className="bg-white rounded-2xl p-8 md:p-12 shadow-sm"
         >
           <h2 className="font-heading text-2xl md:text-3xl text-navy font-light mb-10 text-center">
-            Nous contacter
+            {t("formTitle")}
           </h2>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
             {/* Email */}
             <FloatingInput
-              label="Email"
+              label={t("email")}
               type="email"
               register={register}
               name="email"
@@ -188,14 +184,14 @@ export default function ContactPage() {
             {/* Name row */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <FloatingInput
-                label="Prenom"
+                label={t("firstName")}
                 register={register}
                 name="firstName"
                 required
                 delay={0.2}
               />
               <FloatingInput
-                label="Nom"
+                label={t("lastName")}
                 register={register}
                 name="lastName"
                 required
@@ -212,7 +208,7 @@ export default function ContactPage() {
               className="relative"
             >
               <label className="block text-xs text-peach mb-2 font-body">
-                Nombre d&apos;invites
+                {t("guestsLabel")}
               </label>
               <select
                 {...register("guests")}
@@ -220,7 +216,7 @@ export default function ContactPage() {
               >
                 {Array.from({ length: 9 }, (_, i) => i + 1).map((n) => (
                   <option key={n} value={n}>
-                    {n} {n === 1 ? "invite" : "invites"}
+                    {n} {n === 1 ? t("guest") : t("guests")}
                   </option>
                 ))}
               </select>
@@ -243,7 +239,7 @@ export default function ContactPage() {
 
             {/* Phone */}
             <FloatingInput
-              label="Telephone"
+              label={t("phone")}
               type="tel"
               register={register}
               name="phone"
@@ -259,7 +255,7 @@ export default function ContactPage() {
                 transition={{ delay: 0.4, duration: 0.5 }}
               >
                 <label className="block text-xs text-peach mb-2 font-body">
-                  Date d&apos;arrivee
+                  {t("checkIn")}
                 </label>
                 <input
                   {...register("checkIn")}
@@ -274,7 +270,7 @@ export default function ContactPage() {
                 transition={{ delay: 0.45, duration: 0.5 }}
               >
                 <label className="block text-xs text-peach mb-2 font-body">
-                  Date de depart
+                  {t("checkOut")}
                 </label>
                 <input
                   {...register("checkOut")}
@@ -299,7 +295,7 @@ export default function ContactPage() {
                 placeholder=" "
               />
               <label className="absolute left-0 top-0 text-xs text-peach font-body peer-placeholder-shown:top-6 peer-placeholder-shown:text-base peer-placeholder-shown:text-charcoal/40 transition-all duration-300 pointer-events-none peer-focus:top-0 peer-focus:text-xs peer-focus:text-peach">
-                Commentaire
+                {t("comment")}
               </label>
             </motion.div>
 
@@ -327,7 +323,7 @@ export default function ContactPage() {
                         ease: "linear",
                       }}
                     />
-                    Envoi...
+                    {t("sending")}
                   </span>
                 ) : submitted ? (
                   <motion.span
@@ -335,10 +331,10 @@ export default function ContactPage() {
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    Envoye !
+                    {t("sent")}
                   </motion.span>
                 ) : (
-                  "Envoyer"
+                  t("send")
                 )}
               </button>
             </motion.div>

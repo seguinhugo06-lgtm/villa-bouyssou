@@ -174,7 +174,7 @@ export default function OverviewPage() {
       {/* Hero Section */}
       <section className="relative h-[70vh] min-h-[500px] overflow-hidden">
         <Image
-          src="/images/hero/villa-overview.jpg"
+          src="/images/real/overview-hero.jpg"
           alt="Villa Bouyssou"
           fill
           className="object-cover"
@@ -296,7 +296,7 @@ export default function OverviewPage() {
             <AnimatedSection direction="left">
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
                 <Image
-                  src="/images/exterior/piscine.jpg"
+                  src="/images/real/overview-pool.jpg"
                   alt="Piscine chauffée"
                   fill
                   className="object-cover"
@@ -379,7 +379,7 @@ export default function OverviewPage() {
             <AnimatedSection direction="right" delay={0.2}>
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
                 <Image
-                  src="/images/interior/salon.jpg"
+                  src="/images/real/overview-salon.jpg"
                   alt="Architecture et design"
                   fill
                   className="object-cover"

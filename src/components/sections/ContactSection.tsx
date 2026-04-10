@@ -9,7 +9,7 @@ export default function ContactSection() {
   const t = useTranslations("contactQuick");
 
   return (
-    <section className="py-24 md:py-32 bg-navy text-white">
+    <section className="py-16 md:py-20 bg-navy text-white">
       <div className="max-w-4xl mx-auto px-6 text-center">
         <AnimatedText
           text={t("title")}

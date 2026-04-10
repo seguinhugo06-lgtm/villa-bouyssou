@@ -44,17 +44,25 @@ function formatReviewDate(dateStr: string) {
 
 const averageRating = reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length;
 
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
 const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: (i: number) => ({
+  hidden: { opacity: 0, y: 30 },
+  visible: {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 0.15 * i,
       duration: 0.5,
       ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number],
     },
-  }),
+  },
 };
 
 export default function ReviewsPage() {
@@ -89,21 +97,22 @@ export default function ReviewsPage() {
         </div>
 
         {/* Reviews grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {reviews.map((review, i) => (
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="flex flex-wrap justify-center gap-6 max-w-6xl mx-auto"
+        >
+          {reviews.map((review) => (
             <motion.div
               key={review.id}
-              custom={i}
               variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-              className="bg-white rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-md transition-shadow duration-300"
+              className="bg-white rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
             >
               {/* Author row */}
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-navy/10 flex items-center justify-center font-heading text-navy text-lg">
+                  <div className="w-10 h-10 rounded-full bg-navy/10 flex items-center justify-center font-heading text-navy text-lg shrink-0">
                     {review.author.charAt(0)}
                   </div>
                   <div>
@@ -126,19 +135,18 @@ export default function ReviewsPage() {
               </div>
 
               {/* Text */}
-              <p className="font-body text-charcoal/70 text-sm leading-relaxed">
+              <p className="font-body text-charcoal/70 text-sm leading-relaxed flex-1">
                 {review.text}
               </p>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Add review button */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3, duration: 0.6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.5, duration: 0.6 }}
           className="text-center mt-16"
         >
           <button className="border-2 border-navy text-navy hover:bg-navy hover:text-white font-accent text-sm uppercase tracking-widest px-10 py-4 rounded-full transition-all duration-300">
